@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add exclusive_rule_evaluation checkbox to loyalty program form view -->
+    <record id="loyalty_program_view_form_inherit_exclusive" model="ir.ui.view">
+        <field name="name">loyalty.program.form.inherit.exclusive</field>
+        <field name="model">loyalty.program</field>
+        <field name="inherit_id" ref="loyalty.loyalty_program_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//span[.//field[@name='limit_usage']]" position="after">
+                <label for="exclusive_rule_evaluation" invisible="program_type in ('gift_card', 'ewallet')"/>
+                <span invisible="program_type in ('gift_card', 'ewallet')">
+                    <field name="exclusive_rule_evaluation" class="oe_inline"/>
+                    <span class="text-muted ms-1">Only apply highest priority rule</span>
+                </span>
+                <label for="double_points_days" invisible="program_type in ('gift_card', 'ewallet')"/>
+                <span invisible="program_type in ('gift_card', 'ewallet')">
+                    <field name="double_points_days" class="oe_inline"/>
+                    <span class="text-muted ms-1">days (0 = disabled)</span>
+                </span>
+            </xpath>
+
+            <!-- Hide default kanban rule_ids when exclusive_rule_evaluation is enabled -->
+            <xpath expr="//field[@name='rule_ids']" position="attributes">
+                <attribute name="invisible">exclusive_rule_evaluation</attribute>
+            </xpath>
+
+            <!-- Add tree view of rule_ids with drag-and-drop when exclusive_rule_evaluation is enabled -->
+            <xpath expr="//field[@name='rule_ids']" position="after">
+                <field name="rule_ids" colspan="2" mode="list" nolabel="1"
+                    invisible="not exclusive_rule_evaluation"
+                    context="{'currency_symbol': currency_symbol, 'program_type': program_type}">
+                    <list>
+                        <field name="sequence" widget="handle"/>
+                        <field name="minimum_qty" string="Min Qty"/>
+                        <field name="minimum_amount" string="Min Amount"/>
+                        <field name="reward_point_amount" string="Points" digits="[12, 4]"/>
+                        <field name="reward_point_mode" string="Mode"/>
+                        <field name="floor_calculation" string="Floor"/>
+                    </list>
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="oi_karaikal_product_list_inherit" model="ir.ui.view">
+            <field name="name">oi_karaikal_product_list_inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.product_product_stock_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='free_qty']" position="before">
+                    <field name="different"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_product_tree_inherit_tracking" model="ir.ui.view">
+            <field name="name">product.template.tree.inherit.tracking</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='list_price']" position="before">
+                    <field name="tracking" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

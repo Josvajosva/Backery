@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_supplierinfo_form_inherit" model="ir.ui.view">
+        <field name="name">product.supplierinfo.form.inherit</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_code']" position="after">
+                <field name="part_number" placeholder="e.g., VND-12345"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_supplierinfo_tree_inherit" model="ir.ui.view">
+        <field name="name">product.supplierinfo.tree.inherit</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_code']" position="after">
+                <field name="part_number" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_supplierinfo_search_inherit" model="ir.ui.view">
+        <field name="name">product.supplierinfo.search.inherit</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_code']" position="after">
+                <field name="part_number"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

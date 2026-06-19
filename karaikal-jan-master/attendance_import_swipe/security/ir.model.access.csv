@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_import_attendance_data,access_import_attendance_data,model_import_attendance_data,base.group_user,1,1,1,1
+access_hr_attendance_category,access_hr_attendance_category,model_hr_attendance_category,base.group_user,1,1,1,1
+access_work_location,access_work_location,model_work_location,base.group_user,1,1,1,1
+access_attendance_location_wizard,access_attendance_location_wizard,model_attendance_location_wizard,base.group_user,1,1,1,1

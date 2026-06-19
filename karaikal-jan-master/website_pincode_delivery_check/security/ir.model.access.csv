@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_store_user,delivery.store.user,model_delivery_store,base.group_user,1,1,1,1
+access_delivery_store_pincode_user,delivery.store.pincode.user,model_delivery_store_pincode,base.group_user,1,1,1,1
+access_pincode_location_cache_user,pincode.location.cache.user,model_pincode_location_cache,base.group_user,1,1,1,1
+access_delivery_store_portal,delivery.store.portal,model_delivery_store,base.group_portal,1,0,0,0
+access_delivery_store_pincode_portal,delivery.store.pincode.portal,model_delivery_store_pincode,base.group_portal,1,0,0,0
+access_delivery_store_public,delivery.store.public,model_delivery_store,base.group_public,1,0,0,0
+access_delivery_store_pincode_public,delivery.store.pincode.public,model_delivery_store_pincode,base.group_public,1,0,0,0

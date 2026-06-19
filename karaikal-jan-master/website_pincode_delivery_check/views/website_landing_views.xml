@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="landing_page_template" name="Landing Page">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_cover o_colored_level pt96 pb96" style="background-color: #f8f9fa; min-height: 80vh; display: flex; align-items: center; justify-content: center; font-family: 'Outfit', 'Inter', sans-serif;">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6 col-md-8 col-sm-10">
+                                <!-- Glassmorphic Main Card -->
+                                <div class="card border-0 shadow-lg p-4 p-md-5" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;">
+                                    <div class="text-center mb-4">
+                                        <h2 style="font-weight: 800; color: #2d2d2d; letter-spacing: 1.5px; font-size: 2.2rem; text-transform: uppercase;">Start Your Order</h2>
+                                        <p style="color: #8c8c8c; font-size: 1.1rem; margin-top: 10px; font-weight: 400;">How would you like to receive your order?</p>
+                                    </div>
+
+                                    <!-- Buttons Stack -->
+                                    <div class="d-grid gap-3">
+                                        <!-- In-Store Pickup Button -->
+                                        <button type="button" class="btn order-option-btn py-3 px-4 text-center d-flex align-items-between justify-content-between" onclick="selectOption('store_pickup')" style="background-color: #c09f80; color: #ffffff; border: none; border-radius: 12px; font-size: 1.15rem; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(192, 159, 128, 0.2);">
+                                            <span><i class="fa fa-shopping-basket mr-3" style="font-size: 1.25rem;"></i> In-Store Pickup</span>
+                                            <i class="fa fa-chevron-right" style="font-size: 0.9rem; margin-top: 5px;"></i>
+                                        </button>
+
+                                        <!-- Store Pickup Expandable Panel -->
+                                        <div id="pickup-panel" class="p-3 border rounded-3 mt-1" style="display: none; background: #fafafa; border-color: #e5e5e5 !important; border-radius: 12px;">
+                                            <label for="store-select" class="form-label font-weight-bold" style="color: #4a4a4a; font-size: 0.95rem;">Choose a Store/Branch:</label>
+                                            <select id="store-select" class="form-select mb-3 py-2 px-3" style="border-radius: 8px; border: 1px solid #ced4da;">
+                                                <option value="">-- Select Store --</option>
+                                                <t t-foreach="stores" t-as="store">
+                                                    <option t-att-value="store.id">
+                                                        <t t-esc="store.name"/> (<t t-esc="store.main_pincode"/>)
+                                                    </option>
+                                                </t>
+                                            </select>
+                                            <button type="button" class="btn w-100 py-2" onclick="confirmPickup()" style="background-color: #2d2d2d; color: #fff; font-weight: 600; border-radius: 8px; border: none;">
+                                                Confirm Store
+                                            </button>
+                                        </div>
+
+                                        <!-- Local Delivery Button -->
+                                        <button type="button" class="btn order-option-btn py-3 px-4 text-center d-flex align-items-between justify-content-between" onclick="selectOption('local_delivery')" style="background-color: #c09f80; color: #ffffff; border: none; border-radius: 12px; font-size: 1.15rem; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(192, 159, 128, 0.2);">
+                                            <span><i class="fa fa-truck mr-3" style="font-size: 1.25rem;"></i> Local Delivery</span>
+                                            <i class="fa fa-chevron-right" style="font-size: 0.9rem; margin-top: 5px;"></i>
+                                        </button>
+
+                                        <!-- Local Delivery Expandable Panel -->
+                                        <div id="delivery-panel" class="p-3 border rounded-3 mt-1" style="display: none; background: #fafafa; border-color: #e5e5e5 !important; border-radius: 12px;">
+                                            <label for="delivery-zip" class="form-label font-weight-bold" style="color: #4a4a4a; font-size: 0.95rem;">Enter Delivery Pincode:</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" id="delivery-zip" class="form-control py-2 px-3" placeholder="e.g. 611001" style="border-radius: 8px 0 0 8px; border: 1px solid #ced4da;"/>
+                                                <button class="btn btn-dark px-4" type="button" onclick="confirmDelivery()" style="border-radius: 0 8px 8px 0; font-weight: 600;">Verify</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- PAN India Button -->
+                                        <button type="button" class="btn order-option-btn py-3 px-4 text-center d-flex align-items-between justify-content-between" onclick="selectOption('pan_india')" style="background-color: #c09f80; color: #ffffff; border: none; border-radius: 12px; font-size: 1.15rem; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(192, 159, 128, 0.2);">
+                                            <span><i class="fa fa-globe mr-3" style="font-size: 1.25rem;"></i> PAN India</span>
+                                            <i class="fa fa-chevron-right" style="font-size: 0.9rem; margin-top: 5px;"></i>
+                                        </button>
+                                    </div>
+
+                                    <!-- Error / Feedback Alert -->
+                                    <div id="error-message" class="alert alert-danger mt-4 text-center" style="display: none; border-radius: 10px; font-weight: 500;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

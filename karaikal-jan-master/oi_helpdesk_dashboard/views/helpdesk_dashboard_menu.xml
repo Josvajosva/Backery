@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Standard Helpdesk > Overview (team dashboard); hidden in favor of Helpdesk > Dashboard -->
+    <menuitem id="helpdesk.helpdesk_menu_team_dashboard" active="False"/>
+
+    <record id="action_user_wise_dashboard" model="ir.actions.client">
+        <field name="name">User Wise Dashboard</field>
+        <field name="tag">oi_helpdesk_dashboard_user_wise</field>
+    </record>
+
+    <!-- Main menu: current user only (uid evaluated when action runs) -->
+    <record id="action_team_dashboard_my_tickets" model="ir.actions.client">
+        <field name="name">My tickets</field>
+        <field name="tag">oi_helpdesk_dashboard_team_kanban</field>
+        <field name="context">{'helpdesk_dashboard_assignee_uid': uid, 'helpdesk_dashboard_hide_back': True}</field>
+    </record>
+
+    <!-- Common parent: all custom dashboards under Helpdesk > Dashboard -->
+    <menuitem
+        id="menu_helpdesk_dashboard_root"
+        name="Dashboard"
+        parent="helpdesk.menu_helpdesk_root"
+        sequence="6"
+        groups="helpdesk.group_helpdesk_user"
+    />
+
+    <menuitem
+        id="helpdesk_menu_user_wise_dashboard"
+        name="User Wise Dashboard"
+        parent="oi_helpdesk_dashboard.menu_helpdesk_dashboard_root"
+        action="oi_helpdesk_dashboard.action_user_wise_dashboard"
+        sequence="10"
+        groups="oi_helpdesk_dashboard.group_helpdesk_director"
+    />
+
+    <menuitem
+        id="helpdesk_menu_my_tickets"
+        name="My tickets"
+        parent="oi_helpdesk_dashboard.menu_helpdesk_dashboard_root"
+        action="oi_helpdesk_dashboard.action_team_dashboard_my_tickets"
+        sequence="20"
+        groups="helpdesk.group_helpdesk_user"
+    />
+</odoo>

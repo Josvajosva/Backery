@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Filter delivery methods by delivery_option:
+         store_pickup  → show only "In-Store Pickup" carrier
+         anything else → hide "In-Store Pickup" carrier -->
+    <template id="j_delivery_form_carrier_filter" inherit_id="website_sale.delivery_form">
+        <xpath expr="//li[@name='o_delivery_method']" position="attributes">
+            <attribute name="t-if">
+                (order.delivery_option == 'store_pickup') == (dm.name == 'In-Store Pickup')
+            </attribute>
+        </xpath>
+    </template>
+
+    <!-- Hide delivery address section when In-Store Pickup is selected -->
+    <template id="delivery_address_row_store_pickup" inherit_id="website_sale.delivery_address_row">
+        <xpath expr="//div[@id='delivery_address_row']" position="attributes">
+            <attribute name="t-if">order.delivery_option != 'store_pickup'</attribute>
+        </xpath>
+    </template>
+
+    <!-- Hide "Same as delivery address" checkbox for In-Store Pickup -->
+    <template id="billing_address_row_store_pickup" inherit_id="website_sale.billing_address_row">
+        <xpath expr="//div[hasclass('form-check') and hasclass('form-switch')]" position="attributes">
+            <attribute name="t-if">has_delivery and order.delivery_option != 'store_pickup'</attribute>
+        </xpath>
+        <xpath expr="//div[@id='billing_container']" position="attributes">
+            <attribute name="t-attf-class">{{'d-none' if use_delivery_as_billing and has_delivery and order.delivery_option != 'store_pickup' else ''}}</attribute>
+        </xpath>
+    </template>
+
+    <!-- Pickup Schedule section after delivery method, only for In-Store Pickup -->
+    <template id="pickup_schedule_section" inherit_id="website_sale.checkout">
+        <xpath expr="//t[@t-call='website_sale.billing_address_row']" position="before">
+            <t t-if="order.delivery_option == 'store_pickup'">
+                <div id="pickup_schedule_section" class="mb-4">
+                    <h4 class="fs-6 small text-uppercase fw-bolder">Pickup Schedule</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item text-muted o_outline">
+                            <div class="d-flex form-check mb-0 gap-2">
+                                <input type="radio" id="pickup_asap" name="pickup_type_radio"
+                                    value="asap" class="form-check-input position-absolute"
+                                    t-att-checked="not order.pickup_type or order.pickup_type == 'asap'"/>
+                                <label class="o_delivery_carrier_label" for="pickup_asap">ASAP</label>
+                            </div>
+                            <p class="pickup-option-hint mb-0">Ready for pickup as soon as possible.</p>
+                        </li>
+                        <li class="list-group-item text-muted o_outline">
+                            <div class="d-flex form-check mb-0 gap-2">
+                                <input type="radio" id="pickup_scheduled" name="pickup_type_radio"
+                                    value="scheduled" class="form-check-input position-absolute"
+                                    t-att-checked="order.pickup_type == 'scheduled'"/>
+                                <label class="o_delivery_carrier_label" for="pickup_scheduled">Scheduled</label>
+                            </div>
+                            <p class="pickup-option-hint mb-0">
+                                Choose a future pickup slot (today or up to 2 days ahead).
+                            </p>
+                            <div id="scheduled_datetime_wrapper" class="pickup-schedule-panel mt-3"
+                                t-att-data-scheduled-value="order.scheduled_pickup_datetime and order.scheduled_pickup_datetime.strftime('%Y-%m-%dT%H:%M') or ''"
+                                t-attf-style="{{'display:none;' if order.pickup_type != 'scheduled' else ''}}">
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="scheduled_pickup_date">Pickup Date</label>
+                                        <input type="date" id="scheduled_pickup_date"
+                                            class="form-control"
+                                            required="required"/>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="scheduled_pickup_time">Pickup Time</label>
+                                        <select id="scheduled_pickup_time" class="form-select" disabled="disabled">
+                                            <option value="">Select a time</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Remove "Pay with Demo" express checkout button from cart sidebar.
+         payment.express_checkout renders provider-specific express buttons (Demo, Stripe).
+         We always want customers to go through the full checkout flow. -->
+    <template id="hide_express_checkout" inherit_id="website_sale.checkout_layout">
+        <xpath expr="//t[@t-call='payment.express_checkout']" position="replace"/>
+    </template>
+
+    <!-- Show selected outlet address after billing address for In-Store Pickup -->
+    <template id="outlet_address_row_store_pickup" inherit_id="website_sale.checkout">
+        <xpath expr="//t[@t-call='website_sale.billing_address_row']" position="after">
+            <t t-if="order.delivery_option == 'store_pickup' and order.pickup_store_id">
+                <div id="outlet_address_row" class="mb-3">
+                    <h4 class="text-uppercase small fs-6 fw-bold mt-3">Pickup Outlet Address</h4>
+                    <div class="row row-cols-md-2 row-cols-lg-3 g-3 flex-nowrap flex-md-wrap">
+                        <div class="one_kanban col-md">
+                            <div class="card position-relative h-100 bg-primary border border-primary">
+                                <div class="card-body d-flex flex-column align-items-start text-dark">
+                                    <t t-set="co" t-value="order.pickup_store_id.company_id"/>
+                                    <strong t-esc="order.pickup_store_id.name"/>
+                                    <span t-if="co.street" t-esc="co.street"/>
+                                    <span t-if="co.street2" t-esc="co.street2"/>
+                                    <span t-if="co.city or co.zip">
+                                        <t t-if="co.city" t-esc="co.city"/><t t-if="co.city and co.zip"> - </t><t t-if="co.zip" t-esc="co.zip"/>
+                                    </span>
+                                    <span t-if="co.state_id" t-esc="co.state_id.name"/>
+                                    <span t-if="co.country_id" t-esc="co.country_id.name"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

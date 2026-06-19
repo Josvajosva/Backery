@@ -1,0 +1,13 @@
+<odoo>
+
+    <template id="custom_report_lot_label_expiry" inherit_id="stock.report_lot_label">
+        <xpath expr="//div[@name='lot_name']" position="after">
+            <div class="o_label_4x12">
+                <t t-if="o.manufacturing_date">
+                    Mfd: <t t-out="o.manufacturing_date" t-options='{"widget": "date"}'/>
+                </t>
+            </div>
+        </xpath>
+    </template>
+    
+</odoo>

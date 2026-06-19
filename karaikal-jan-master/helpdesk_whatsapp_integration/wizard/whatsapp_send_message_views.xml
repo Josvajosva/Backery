@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Odoo View Definition for Whatsapp Message Form -->
+    <record id="helpdesk_wai_whatsapp_send_message_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.wai.send.message.view.form</field>
+        <field name="model">helpdesk.wai.send.message</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form string="Whatsapp Message">
+                <group>
+                    <field name="ticket_id"/>
+                    <field name="mobile"/>
+                    <field name="template_id"/>
+                </group>
+                <group>
+                    <field name="message"/>
+                </group>
+                <footer>
+                    <button name="action_send_message" string="Send" type="object"/>
+                    <button name="cancel" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

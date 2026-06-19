@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Service product for In-Store Pickup delivery method -->
+        <record id="product_instore_pickup" model="product.product">
+            <field name="name">In-Store Pickup</field>
+            <field name="type">service</field>
+            <field name="list_price">0.0</field>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <!-- In-Store Pickup delivery carrier -->
+        <record id="delivery_carrier_instore_pickup" model="delivery.carrier">
+            <field name="name">In-Store Pickup</field>
+            <field name="delivery_type">fixed</field>
+            <field name="fixed_price">0.0</field>
+            <field name="product_id" ref="product_instore_pickup"/>
+            <field name="active">True</field>
+        </record>
+
+    </data>
+</odoo>

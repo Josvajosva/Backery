@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_order_form_inherit_oi_karaikal_crm" model="ir.ui.view">
+            <field name="name">view.order.form.inherit.oi.karaikal.crm</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='customer_signature']" position="after">
+                    <page name="attachment" string="Attachment" invisible="not hide_attachment">
+                        <field name="attachment_ids" widget="many2many_binary"
+                            options="{'no_create': True}" />
+                    </page>
+                </xpath>
+                <xpath expr="//group[@name='sale_shipping']/label[@for='commitment_date']"
+                    position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//group[@name='sale_shipping']/div[@class='o_row']"
+                    position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='has_active_pricelist']" position="before">
+                    <label for="commitment_date" string="Delivery Date" />
+                    <div name="commitment_date_div" class="o_row">
+                        <field name="commitment_date" readonly="state == 'cancel' or locked" />
+                        <span name="expected_date_span" class="text-muted">Expected: <field
+                                name="expected_date" class="oe_inline" /></span>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

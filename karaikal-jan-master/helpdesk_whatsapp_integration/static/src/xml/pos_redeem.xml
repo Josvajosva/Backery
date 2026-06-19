@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    
+    <!-- Extend the PaymentScreen template -->
+    <t t-extend="PaymentScreen">
+        <!-- Add redeem button after payment methods -->
+        <t t-jquery=".paymentmethods-container" t-operation="after">
+            <div class="redeem-container">
+                <div class="points-info" t-if="partner">
+                    <strong>Available Points:</strong>
+                    <span class="points-value">
+                        <t t-esc="availablePoints"/>
+                    </span>
+                </div>
+                <button 
+                    class="redeem-btn btn btn-light" 
+                    t-on-click="onClickRedeem"
+                    t-att-disabled="!canRedeem"
+                >
+                    <i class="fa fa-gift"></i>
+                    Redeem Points
+                </button>
+            </div>
+        </t>
+        
+        <!-- Add CSS styles -->
+        <t t-jquery=".payment-screen" t-operation="after">
+            <style>
+                .redeem-container {
+                    margin: 10px;
+                    padding: 10px;
+                    background: #f8f9fa;
+                    border-radius: 8px;
+                    border: 1px solid #dee2e6;
+                }
+                
+                .points-info {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 10px;
+                    font-size: 16px;
+                    padding: 8px;
+                    background: white;
+                    border-radius: 4px;
+                }
+                
+                .points-value {
+                    color: #28a745;
+                    font-weight: bold;
+                }
+                
+                .redeem-btn {
+                    width: 100%;
+                    padding: 12px;
+                    font-size: 16px;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    border: none;
+                    color: white;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+                
+                .redeem-btn:hover:not(:disabled) {
+                    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                }
+                
+                .redeem-btn:disabled {
+                    background: #6c757d;
+                    cursor: not-allowed;
+                    opacity: 0.6;
+                }
+                
+                .redeem-btn i {
+                    margin-right: 8px;
+                }
+            </style>
+        </t>
+    </t>
+    
+</templates>

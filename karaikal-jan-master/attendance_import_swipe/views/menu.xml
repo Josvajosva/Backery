@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_attendance_import_root"
+              name="Attendance Import"
+              parent="hr_attendance.menu_hr_attendance_root"
+              sequence="30"/>
+
+    <menuitem id="menu_attendance_import"
+              name="Import Card Swipe"
+              parent="menu_attendance_import_root"
+              action="attendance_import_swipe.action_attendance_import"
+              sequence="10"/>
+<!--    <menuitem id="menu_attendance_import"-->
+<!--              name="Export Attendance"-->
+<!--              parent="menu_attendance_import_root"-->
+<!--              action="attendance_import_swipe.action_attendance_location_wizard"-->
+<!--              sequence="20"/>-->
+
+<!--    <menuitem sequence="99" id="hr_attendance.menu_hr_attendance_settings" name="Configuration" parent="hr_attendance.menu_hr_attendance_root" groups="hr_attendance.group_hr_attendance_manager"/>-->
+<!--    <menuitem sequence="10" id="menu_hr_attendance_settings1" name="Settings" parent="hr_attendance.menu_hr_attendance_settings" action="hr_attendance.action_hr_attendance_settings" groups="hr_attendance.group_hr_attendance_manager"/>-->
+<!--    <menuitem sequence="20" id="menu_hr_attendance_category" name="Attendance Categories" parent="hr_attendance.menu_hr_attendance_settings" action="action_hr_attendance_category"/>-->
+<!--    <menuitem sequence="30" id="menu_work_location" name="Work Locations" parent="hr_attendance.menu_hr_attendance_settings" action="action_work_location"/>-->
+
+
+    <record id="action_attendance_excel_download" model="ir.actions.report">
+        <field name="name">Attendance Excel</field>
+        <field name="model">hr.attendance</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">attendance_import_swipe.attendance_excel_xlsx</field>
+        <field name="print_report_name">'Attendance_' + time.strftime("%Y_%m")</field>
+    </record>
+
+    <menuitem id="menu_attendance_excel"
+              name="Attendance Excel"
+              parent="hr_attendance.menu_hr_attendance_root"
+              action="action_attendance_location_wizard"/>
+</odoo>

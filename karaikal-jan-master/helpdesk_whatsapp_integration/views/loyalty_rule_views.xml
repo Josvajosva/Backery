@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Add floor_calculation checkbox to loyalty rule form view -->
+    <record id="loyalty_rule_view_form_inherit_cc_pos" model="ir.ui.view">
+        <field name="name">loyalty.rule.view.form.inherit.cc_pos</field>
+        <field name="model">loyalty.rule</field>
+        <field name="inherit_id" ref="loyalty.loyalty_rule_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='minimum_qty']" position="before">
+                <field name="floor_calculation"/>
+            </xpath>
+            <xpath expr="//field[@name='reward_point_amount']" position="attributes">
+                <attribute name="digits">[12, 4]</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add floor_calculation indicator in loyalty rule kanban view -->
+    <record id="loyalty_rule_view_kanban_inherit_cc_pos" model="ir.ui.view">
+        <field name="name">loyalty.rule.view.kanban.inherit.cc_pos</field>
+        <field name="model">loyalty.rule</field>
+        <field name="inherit_id" ref="loyalty.loyalty_rule_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='user_has_debug']" position="after">
+                <field name="floor_calculation"/>
+            </xpath>
+            <xpath expr="//div[hasclass('mw-75')]" position="inside">
+                <div t-if="record.floor_calculation.raw_value" class="text-success fw-bold mt-1">
+                    <i class="fa fa-check-square-o"/> Floor Calculation
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,10 @@
+<odoo>
+    <report
+        id="action_attendance_excel_xlsx"
+        model="hr.attendance"
+        string="Attendance Excel"
+        report_type="xlsx"
+        name="attendance_import_swipe.attendance_excel_xlsx"
+        file="Attendance_Report"
+    />
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_wa_reply_template_search" model="ir.ui.view">
+        <field name="name">wa.reply.template.search</field>
+        <field name="model">wa.reply.template</field>
+        <field name="arch" type="xml">
+            <search string="WhatsApp Reply Template Search">
+                <separator />
+                <field name="code" filter_domain="[('name', 'ilike', self)]" />
+            </search>
+        </field>
+    </record>
+    <record id="view_wa_reply_template_form" model="ir.ui.view">
+        <field name="name">view.wa_reply_template.form</field>
+        <field name="model">wa.reply.template</field>
+        <field name="arch" type="xml">
+            <form string="Stages">
+                <header />
+                <sheet>
+                    <div class="oe_title">
+                        <label for="code" class="oe_edit_only" />
+                        <h1>
+                            <field name="code" required="1" />
+                        </h1>
+                    </div>
+                    <group name="main">
+                        <field name="template"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_wa_reply_template_tree" model="ir.ui.view">
+        <field name="name">view.wa_reply_template.list</field>
+        <field name="model">wa.reply.template</field>
+        <field name="arch" type="xml">
+            <list string="WhatsApp Reply Template" multi_edit="1" sample="1">
+                <field name="code" />
+                <field name="template"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="wa_reply_template_action" model="ir.actions.act_window">
+        <field name="name">WhatsApp Reply Template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wa.reply.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="path">wa-reply-template</field>
+    </record>
+    
+    <menuitem
+        id="wa_reply_template_menu"
+        name="WhatsApp Reply Template"
+        parent="helpdesk.helpdesk_menu_config"
+        action="wa_reply_template_action"
+        sequence="2"
+    />
+
+</odoo>

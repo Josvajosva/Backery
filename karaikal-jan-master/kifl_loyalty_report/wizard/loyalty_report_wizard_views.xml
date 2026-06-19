@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_loyalty_report_wizard_form" model="ir.ui.view">
+        <field name="name">loyalty.report.wizard.form</field>
+        <field name="model">loyalty.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Loyalty History Report">
+                <group col="4">
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </group>
+                <group>
+                    <field name="partner_ids" widget="many2many_tags" placeholder="Leave empty to select all customers..." options="{'no_create': True}"/>
+                </group>
+                <group col="4">
+                    <field name="check_earned"/>
+                    <field name="check_redeemed"/>
+                </group>
+                <footer>
+                    <button name="action_generate_excel" string="Print Excel" type="object" class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_loyalty_report_wizard" model="ir.actions.act_window">
+        <field name="name">Loyalty History Report</field>
+        <field name="res_model">loyalty.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_loyalty_history_report" name="Loyalty History" parent="sale.menu_sale_report" action="action_loyalty_report_wizard" sequence="50"/>
+</odoo>

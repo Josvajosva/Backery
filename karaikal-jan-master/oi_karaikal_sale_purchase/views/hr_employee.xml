@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_inherited" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherited</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='company_id']" position="after">
+                <field name="pos_user"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_filter_inherited" model="ir.ui.view">
+        <field name="name">hr.employee.filter.inherited</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="pos_user"/>
+                <filter name="pos_users" string="POS User" domain="[('pos_user', '=', True)]" context="{'search_default_pos_users': 1}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_tree_inherited" model="ir.ui.view">
+        <field name="name">hr.employee.tree.inherited</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='parent_id']" position="after">
+                <field name="pos_user" widget="boolean_toggle" decoration-danger="pos_user == True" readonly="1" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_employee_kanban_inherited" model="ir.ui.view">
+        <field name="name">hr.employee.kanban.inherited</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='hr_icon_display']" position="after">
+                <field name="pos_user" widget="boolean_toggle" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

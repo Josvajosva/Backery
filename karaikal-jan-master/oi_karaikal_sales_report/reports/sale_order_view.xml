@@ -1,0 +1,163 @@
+<odoo>
+    <data>
+        <template id="sale_order_header_template">
+            <div t-attf-class="header" t-attf-style="report_header_style">
+               
+
+          </div>
+          <div t-attf-class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+              <div class="pt-5">
+                  <t t-call="web.address_layout"/>
+              </div>
+              <t t-raw="0"/>
+          </div>
+
+
+          <div t-attf-class="footer o_standard_footer ">
+           
+          </div>
+        </template>
+
+        <template id="sale_order_body_template">
+            <t t-call="oi_karaikal_sales_report.sale_order_header_template">
+                <div class="page">
+                            <t t-set="doc" t-value="docs[0]"/>
+                            <div style="font-size: 15px; font-family: Arial, sans-serif; margin: 0 auto;">
+                                <div style="text-align: center;">
+                                    <h4 style="margin: 0;"><t t-esc="doc.company_id.name"/></h4>
+                                    <p style="margin: 0; font-size: 15px;">
+                                        <t t-esc="(doc.company_id.street or '').upper()"/>
+                                        <t t-if="doc.company_id.street2">, <t t-esc="(doc.company_id.street2 or '').upper()"/></t><br/>
+                                        <t t-esc="(doc.company_id.city or '').upper()"/>, <t t-esc="(doc.company_id.state_id.name or '').upper()"/>, <t t-esc="(doc.company_id.zip or '').upper()"/><br/>
+                                        GSTIN/UIN: <t t-esc="doc.company_id.vat"/><br/>
+                                        State Name: <t t-esc="doc.company_id.state_id.name"/> 
+                                        <t t-if="doc.company_id.state_id.code">, Code: <t t-esc="doc.company_id.state_id.code"/></t><br/>
+                                        E-Mail: <t t-esc="doc.company_id.email"/>
+                                    </p>
+                                </div>
+                                <span style="display: block; text-align: center;"> SALES ORDER </span>
+                                <!-- Sales Order Details -->
+                                    <table style="width: 100%; font-size: 15px; border-collapse: collapse;">
+                                    <tr>
+                                            <td style="border: hidden; width: 10%; text-align: left;">Bill No:</td>
+                                            <td style="border: hidden; width: 40%; text-align: left;"><strong><t t-esc="doc.name"/></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: hidden; width: 20%; text-align: left;">User:</td>
+                                            <td style="border: hidden; width: 30%; text-align: left;"><strong><t t-esc="doc.user_id.name"/></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: hidden; width: 20%; text-align: left;">Date:</td>
+                                            <td style="border: hidden; width: 30%; text-align: left;"><strong><t t-esc="doc.create_date.strftime('%d-%m-%Y')"/></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: hidden; width: 20%; text-align: left;">Buyer:</td>
+                                            <td style="border: hidden; width: 30%; text-align: left;"><strong><t t-esc="doc.partner_id.name"/></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: hidden; width: 20%; text-align: left;">Shop:</td>
+                                            <td style="border: hidden; width: 30%; text-align: left;"><strong><t t-esc="doc.company_id.name"/></strong></td>
+                                        </tr>
+                                    </table>
+
+                                
+                                <!-- Product Table -->
+                            <table style="width: 100%; font-size: 15px; border:hidden;margin-top: 10px;margin-: 10px">
+                                
+                                    <tr>
+                                        <th style="text-align: left; padding: 3px;width: 10%;border:hidden">Sl</th>
+                                        <th style="text-align: left; padding: 3px;width: 35%;border:hidden">Description</th>
+                                        <th style="text-align: center; padding: 3px;width: 20%;border:hidden">Qty</th>
+                                        <th style="text-align: center; padding: 3px;width: 15%;border:hidden">Rate</th>
+                                        <th style="text-align: right; padding: 3px;width: 20%;border:hidden">Amount</th>
+                                    </tr>
+                                <tbody>
+                                    <t t-set="i" t-value="1"/>
+                                    <t t-foreach="doc.order_line" t-as="line">
+                                        <tr>
+                                            <td style="text-align: left; padding: 3px;border:hidden;width: 10%">
+                                                <span t-esc="i"/>
+                                                <t t-set="i" t-value="i+1"/>
+                                            </td>
+                                            <td style="text-align: left; padding: 3px;border:hidden;width: 35%">
+                                                <t t-esc="line.product_id.name"/>
+                                            </td>
+                                            <td style="text-align: center; padding: 3px;border:hidden;width: 20%">
+                                                <t t-esc="'{:.2f}'.format(line.product_uom_qty)"/>
+                                            </td>
+                                            <td style="text-align: center; padding: 3px;border:hidden;width: 15%">
+                                            <t t-esc="'%.2f' % float(line.price_unit)"/>
+
+                                            </td>
+                                            <td style="text-align: right; padding: 3px;border:hidden;width: 20%">
+                                                <t t-esc="'%.2f' % float(line.price_subtotal)"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                     <tr>
+                                        <td colspan="2" style="width:45%;border: hidden"><strong/></td>
+                                        <td style="text-align: center;width:20%;border: hidden">
+                                        <strong><t t-esc="'{:.2f}'.format(sum(line.product_uom_qty for line in doc.order_line if line.product_uom_qty))"/></strong>
+                                            </td>
+                                        <td colspan="2" style="text-align: right;width:35%;border: hidden">
+                                            <strong><t t-esc="'%.2f' % doc.amount_total"/></strong>
+                                        </td>
+                                            </tr>
+                                   
+                                </tbody>
+                            </table>
+
+                                <!-- Total and Payments -->
+            
+                                <div style="margin-top: 10px;">
+                                    <table style="width: 100%; font-size: 16px; border: hidden;">
+                                          <tr>
+                                           <td style="border: hidden;font-size:18px;"><strong>TOTAL</strong></td>
+                                           <td style="text-align: center; border: hidden">
+                                            </td>
+
+                                            <td style="text-align: right; border: hidden;font-size:18px">
+                                                <strong><t t-esc="'%.2f' % doc.amount_total"/></strong>
+                                            </td>
+                                        </tr>
+                                       
+                                         <t t-set="total_advance" t-value="sum(i.amount_company_currency_signed for i in doc.account_payment_ids)"/>
+
+                                        <!-- Advance Received and Balance -->
+                                        <tr>
+                                            <td style="border: hidden;">Advance Received</td>
+                                            <td style="text-align: right; border: hidden;">
+                                                <td style="text-align: right;border:hidden"> <t t-esc="'%.2f' % total_advance"/></td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: hidden;">Balance</td>
+                                            <td style="text-align: right; border: hidden;">
+                                            <td style="text-align: right;"><t t-esc="'{:.2f}'.format(doc.amount_total - total_advance)"/></td>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <!-- Footer -->
+                                <div style="text-align: center; margin-top: 10px;">
+                                    <p>Thank You! Visit Again!!</p>
+                                </div>
+                            </div>
+                       
+                   
+                 </div>
+            </t>
+        </template>
+
+
+        <template id="sale_order_action">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="oi_karaikal_sales_report.sale_order_body_template"/>
+                    </t>
+                </t>
+        </template>
+
+    </data>
+</odoo>

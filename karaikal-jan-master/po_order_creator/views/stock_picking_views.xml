@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit stock.picking form view to set new security group on Validate buttons -->
+    <record id="stock_picking_form_inherit_po_validate" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.po.validate</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='button_validate' and hasclass('oe_highlight')]" position="attributes">
+                <attribute name="invisible">state in ('draft', 'confirmed', 'done', 'cancel')</attribute>
+                <attribute name="groups">po_order_creator.group_validate_picking</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='button_validate' and hasclass('o_btn_validate')]" position="attributes">
+                <attribute name="invisible">state in ('waiting', 'assigned', 'done', 'cancel')</attribute>
+                <attribute name="groups">po_order_creator.group_validate_picking</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Hide the standard Validate server action from the stock picking list view -->
+    <record id="stock.action_validate_picking" model="ir.actions.server">
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+    <!-- Define group-wise Validate server action for stock picking list view -->
+    <record id="action_validate_picking_group_wise" model="ir.actions.server">
+        <field name="name">Validate Group-wise</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="groups_id" eval="[Command.link(ref('po_order_creator.group_validate_picking'))]"/>
+        <field name="code">
+            if records:
+                res = records.action_validate_group_wise()
+                if isinstance(res, dict):
+                    action = res
+        </field>
+    </record>
+</odoo>

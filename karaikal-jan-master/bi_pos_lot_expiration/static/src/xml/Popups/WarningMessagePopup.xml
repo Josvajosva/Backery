@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="bi_pos_lot_expiration.WarningMessagePopup">
+        <Dialog title="props.title" bodyClass="'d-flex flex-column justify-content-center'" size="'md'">
+            <div class="modal-body">
+                <p class="body">
+                    <t t-if="props.message.length != 0">
+                        The Entered Serial number
+                        <t t-set="count" t-value="0"/>
+                        <t t-log="props"/>
+                        <t t-foreach="props.message" t-as="invalid" t-key="invalid.id">
+                            <t t-if="count &gt; 0">
+                                <span>,</span>
+                            </t>
+                            <t t-esc="invalid.text"/>
+                            <t t-set="count" t-value="count+1"/>
+                        </t>
+                        does not exist.
+                        <br/><br/>
+                    </t>
+
+                    <t t-if="props.expiry_lot.length != 0">
+                        <table style="width:100%">
+                            <tr>
+                                <th>Serial Number</th>
+                                <th>Expiry Date</th>
+                            </tr>
+                            <t t-foreach="props.expiry_lot" t-as="expiry" t-key="expiry.id">
+                                <tr>
+                                    <td><t t-esc="expiry.name"/></td>
+                                    <td><t t-esc="expiry.alert_date"/></td>
+                                </tr>
+                            </t>
+                        </table>
+                    </t>
+                    <br/>
+                </p>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary btn-lg lh-lg o-default-button" t-on-click="close">Ok</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>

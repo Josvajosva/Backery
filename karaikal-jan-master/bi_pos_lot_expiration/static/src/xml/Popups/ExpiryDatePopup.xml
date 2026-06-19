@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="bi_pos_lot_expiration.ExpiryDatePopup">
+        <Dialog title="props.title" bodyClass="'d-flex flex-column justify-content-center'" size="'md'">
+            <div class="modal-body">
+                <p class="body">
+                    <div class="client-detail">
+                        <span>Expiry Date : <t t-esc="props.alert_date"/></span>
+                    </div>
+                    <br/>
+                </p>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary btn-lg lh-lg o-default-button" t-on-click="close">Ok</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>

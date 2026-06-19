@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="invoice_print_out_header_template">
+            <div t-attf-class="header" t-att-style="report_header_style"/>
+            <div t-attf-class="article o_report_layout_standard "
+                t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+                t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-out="0"/>
+            </div>
+            <div t-attf-class="footer o_standard_footer"/>
+        </template>
+
+        <template id="invoice_print_out_body_template">
+            <t t-call="oi_karaikal_invoice.invoice_print_out_header_template">
+                <t t-foreach="docs" t-as="doc"/>
+                        <div class="page" style="position: relative;">
+                                <!-- Intercompany QR Code: encodes PO_id|Invoice_id -->
+                                <t t-if="doc.is_intercompany_so_invoice">
+                                    <t t-set="so_ids" t-value="doc._get_intercompany_po_ids()"/>
+                                    <t t-set="qr_value" t-value="'%s|%s' % (so_ids, doc.id)"/>
+                                    <div style="text-align: right; position: absolute; top: -50px; right: 0px;">
+                                        <img t-att-src="'/report/barcode/?barcode_type=QR&amp;value=%s&amp;width=120&amp;height=120' % qr_value"
+                                             alt="QR"
+                                             style="width: 70px; height: 70px; display: block;"/>
+                                    </div>
+                                </t>
+
+                                <h4 class="text-center">
+                                    <strong>
+                                        Tax Invoice
+                                    </strong>
+                                </h4>
+
+
+                                <!--<div style="display: flex; justify-content: space-between; align-items: flex-start;">-->
+                                    <!-- Left section with IRN, Ack No, and Ack Date -->
+                                <!--    <div>-->
+                                <!--        <span>IRN:</span> -->
+                                        <!--<span t-esc="doc.irn" />-->
+                                <!--        <br/>-->
+                                <!--        <span>Ack No:</span>-->
+                                        <!--<span t-esc="doc.ack_no" />-->
+                                <!--        <br/>-->
+                                <!--        <span>Ack Date:</span>-->
+                                        <!--<span t-esc="doc.ack_date" />-->
+                                <!--    </div>-->
+                                    <!-- Right section with QR Code -->
+                                <!--    <div>-->
+                                        <!--<img t-if="doc.qr_code" t-att-src="doc.qr_code" style="width: 100px; height: 100px;" alt="QR Code" />-->
+                                <!--    </div>-->
+                                <!--</div>-->
+
+                            <table style="border:hidden;padding:5px;font-size:15px;" width="100%">
+							
+							<tr>
+							  
+							  <td colspan="2">
+							    	
+								<t t-set="l10n_in_einvoice_json" t-value="doc._get_l10n_in_edi_response_json()"/>
+								 <t t-if="l10n_in_einvoice_json">
+							<b><span style="padding-left:8px;">IRN No:</span></b>
+							<span t-esc="l10n_in_einvoice_json['Irn']"/>
+						</t><br/>
+							  </td>
+							</tr>
+					 
+							  <td width="20%!important" style="border:hidden;;padding:10px;padding-left:10px; ">
+								<t t-set="l10n_in_einvoice_json" t-value="doc._get_l10n_in_edi_response_json()"/>
+								  <div t-if="l10n_in_einvoice_json">
+							  			<img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' %('QR', l10n_in_einvoice_json['SignedQRCode'], 300, 300)" style="max-height: 122px"/>
+								  </div>
+							  </td>
+							  
+							  <td width="33%!important" style="border:hidden;; vertical-align: top;padding-left:10px;">
+								
+	
+						<t t-set="l10n_in_einvoice_json" t-value="doc._get_l10n_in_edi_response_json()"/>
+						<t t-if="l10n_in_einvoice_json">
+						<strong>Acknowledgement No &amp; Date :</strong>
+						  <p t-out="l10n_in_einvoice_json['AckNo']"/>
+						  <p t-out="l10n_in_einvoice_json['AckDt']"/>
+						  </t>
+							 </td>
+							 
+					
+				  
+						   </table>
+                                
+                        
+
+                        <table width="100%" style="border:1px solid black;padding:3px">
+                            <tr>
+                                <td rowspan="3" width="50%" style="border:1px solid black;font-size:15px;padding:3px">
+                                    <!--<span>Customer Name &amp; Address:</span>-->
+                                    <!--<br/>-->
+                                   <b> <span style="font-size:17px" t-field="doc.company_id.name"/></b>
+                                    <br/>
+                                    <span style="font-size:15px" t-field="doc.company_id.street"/>
+                                    <br/>
+                                    <span style="font-size:15px" t-field="doc.company_id.street2"/>
+                                    <br/>
+                                    <span style="font-size:15px" t-field="doc.company_id.city"/>
+                                    <br/>
+                                    <span>GSTIN/UIN :</span><span style="font-size:15px;padding-left:5px" t-field="doc.company_id.vat"/><br/>
+                                   <span>State Name : </span> <span style="font-size:15px;padding-left:5px" t-field="doc.company_id.state_id.name"/> <span t-if="doc.company_id.state_id.name">,</span> <span t-field="doc.company_id.state_id.code"/><br/>
+                                    <span>E-Mail :</span><span style="font-size:15px ;padding-left:5px" t-field="doc.company_id.email"/>
+        
+                                </td>
+                                <td width="25%" style="border:1px solid black;font-size:15px;padding:3px">
+                                    <span style="text-align:left">Invoice No.</span> <span style="padding-left:15px">e-Way Bill No.</span><br/>
+                                   <b><span style="text-align:left" t-field="doc.name"/></b> 
+                                </td>
+                                <td width="25%" style="border:1px solid black;font-size:15px;padding:3px">
+                                    <span>Dated</span><br/>
+                                    <b><span t-field="doc.invoice_date"/></b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="25%" style="border:1px solid black;font-size:15px;padding:3px">
+                                    <span>Delivery Note</span>
+                                     <!--<span t-esc="doc.invoice_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/> -->
+                                </td>
+                                <td width="25%" style="border:1px solid black;font-size:15px;padding:3px">
+                                    <span>Mode/Terms of Payment</span>
+                                    <b><span t-field="doc.invoice_payment_term_id"/></b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="25%" style="border:1px solid black;font-size:15px;padding:3px">
+                                    <span>Reference No. &amp; Date.</span>
+                                </td>
+                                <td width="25%" style="border:1px solid black;font-size:15px;padding:3px">
+                                    <span>Other References</span>
+                                
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" style="border:1px solid black;font-size:15px;padding:3px">
+                                    <span>
+                                            Buyer (Bill to)
+                                        </span>
+                                    <br/>
+                                     <b> <span style="font-size:17px" t-field="doc.partner_shipping_id.name"/></b>
+                                    <br/>
+                                    <span style="font-size:15px" t-field="doc.partner_shipping_id.street"/>
+                                    <br/>
+                                    <span style="font-size:15px" t-field="doc.partner_shipping_id.street2"/>
+                                    <br/>
+                                    <span style="font-size:15px" t-field="doc.partner_shipping_id.city"/>
+                                    <br/>
+                                    <span>GSTIN/UIN :</span><span style="font-size:15px;padding-left:5px" t-field="doc.partner_shipping_id.vat"/><br/>
+                                   <span>State Name : </span> <span style="font-size:15px;padding-left:5px" t-field="doc.partner_shipping_id.state_id.name"/> <span t-if="doc.partner_shipping_id.name">,</span> <span t-field="doc.partner_shipping_id.state_id.code"/><br/>
+                                </td>
+                                <td colspan="2" width="50%" style="border:1px solid black;font-size:15px;padding:3px">
+                                    <span>Terms of Delivery</span>
+                                    <span t-field="doc.name"/>
+                                </td>
+                            </tr>
+                    </table>
+                    
+                    
+                    <table style="border: 1px solid black;width:100%;border-top:hidden;padding:3px">
+                    <tr width="100%" style="border:1px solid black">
+                        <b>
+                            <th width="5%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">Sl.No</th>
+                            <th width="45%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">Description of Goods</th>
+                            <th width="9%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">HSN/SAC</th>
+                            <th width="10%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">Quantity</th>
+                            <th width="12%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">Rate</th>
+                            <th width="6%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">Taxes</th>
+                            <th width="5%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">Per</th>
+                            <th width="10%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">Amount</th>
+                        </b>
+                    </tr>
+                    <t t-set="i" t-value="1"/>
+                    <tr width="100%" t-foreach="doc.invoice_line_ids" t-as="line" style="border:1px solid black;padding:3px">
+                        <td width="5%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">
+                            <span t-esc="i"/>
+                            <t t-set="i" t-value="i+1"/>
+                        </td>
+                        <td width="45%" style="text-align:left;border:1px solid black;font-size:15px;padding:3px">
+                            <span t-esc="line.name"/>
+                        </td>
+                        <td width="9%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">
+                            <span t-field="line.l10n_in_hsn_code"/>
+                        </td>
+                        <td width="10%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                            <span/>
+                            <span t-field="line.quantity"/>
+                        </td>
+                        <td width="12%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                            <t t-if="line.price_subtotal">
+                                <span t-esc="line.price_subtotal / line.quantity" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                            </t>
+                            <t t-else="">
+                                <span>0.0</span>
+                            </t>
+                        </td>
+                        <!-- <td width="12%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                            <span/>
+                            <span t-field="line.price_subtotal"/>
+                        </td> -->
+                        <td width="6%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                        
+                            <span t-field="line.tax_ids.name"/>
+                        </td>
+                        <td width="5%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                            <span/>
+                            <t t-esc="line.product_uom_id.name"/>
+                        </td>
+                        <td width="10%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                            <span/>
+                            <t t-esc="line.price_subtotal" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                        </td>
+                    </tr>
+                    
+                    
+                    
+                    
+                    <tr width="100%" style="border:1px solid black">
+                        
+                        <td width="5%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">
+                        </td>
+                        <td width="45%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                            <b>Total</b>
+                        </td>
+                        <td width="9%" style="text-align:center;border:1px solid black;font-size:15px;padding:3px">
+                            
+                        </td>
+                        <td width="10%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                                <t t-set="total_tax_exclu" t-value="sum(line.quantity for line in doc.invoice_line_ids)"/>
+                            <t t-esc="total_tax_exclu" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                        </td>
+                        <td width="12%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                            
+                        </td>
+                        <td width="6%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                            
+                        </td>
+                        <td width="5%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                           
+                        </td>
+                        <td width="10%" style="text-align:right;border:1px solid black;font-size:15px;padding:3px">
+                                <t t-set="total_exclu" t-value="sum(line.price_subtotal for line in doc.invoice_line_ids)"/>
+                            <t t-esc="total_exclu" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
+                        </td>
+                        
+                        
+                    </tr>
+                </table>
+                    
+                    <br/>
+                    
+                     <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                        <table class="o_total_table table ">
+                            <!-- Tax totals -->
+                            <t t-call="sale.document_tax_totals">
+                                <t t-set="tax_totals" t-value="doc.tax_totals"/>
+                                <t t-set="currency" t-value="doc.currency_id"/>
+                            </t>
+                        </table>
+                    </div>
+                        
+                        
+
+                        <table width="100%" style="border-collapse: collapse; border: 1px solid black;">
+                            <tr>
+                                <td style="border: 1px solid black; padding: 5px;">
+                                    <span><strong>Amount Chargeable (in words)</strong></span>
+                                </td>
+                                <td style="border: 1px solid black; text-align: right;border-left:hidden">
+                                    <span>E. &amp; O.E</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="border: 1px solid black; padding: 5px;">
+                                   <b><span t-esc="doc.currency_id.name "/> <span t-esc="doc.currency_id.amount_to_text(doc.amount_total)"/> Only</b>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!--<table width="100%" style="border-collapse: collapse; border: 1px solid black;border-top:hidden">-->
+                            <!-- First row: Headers -->
+                        <!--    <tr>-->
+                        <!--        <td rowspan="2" style="border: 1px solid black; text-align: center; vertical-align: middle;">-->
+                                    <!--<span>HSN/SAC</span>-->
+                        <!--        </td>-->
+                        <!--        <td rowspan="2" style="border: 1px solid black; text-align: center; vertical-align: middle;">-->
+                        <!--            <span>Taxable Value</span>-->
+                        <!--        </td>-->
+                        <!--        <td colspan="2" style="border: 1px solid black; text-align: center;">-->
+                        <!--            <span>Integrated Tax</span>-->
+                        <!--        </td>-->
+                        <!--        <td rowspan="2" style="border: 1px solid black; text-align: center; vertical-align: middle;">-->
+                        <!--            <span>Total Tax Amount</span>-->
+                        <!--        </td>-->
+                        <!--    </tr>-->
+                            <!-- Second row: Sub-columns for Integrated Tax -->
+                        <!--    <tr>-->
+                        <!--        <td style="border: 1px solid black; text-align: center;">-->
+                        <!--            <span>Rate</span>-->
+                        <!--        </td>-->
+                        <!--        <td style="border: 1px solid black; text-align: center;">-->
+                        <!--            <span>Amount</span>-->
+                        <!--        </td>-->
+                        <!--    </tr>-->
+                            <!-- Third row: Example Data -->
+                        <!--    <tr>-->
+                        <!--        <td style="border: 1px solid black; text-align: center;">-->
+                                    <!--<span>190590</span>-->
+                        <!--        </td>-->
+                        <!--        <td style="border: 1px solid black; text-align: center;">-->
+                        <!--            <span t-esc="doc.amount_untaxed"/>-->
+                        <!--        </td>-->
+                        <!--        <td style="border: 1px solid black; text-align: center;">-->
+                        <!--            <t t-foreach="doc.invoice_line_ids" t-as="line">-->
+                        <!--                <span t-esc="line.tax_ids.name"/>-->
+                        <!--            </t>-->
+                        <!--        </td>-->
+                        <!--        <td style="border: 1px solid black; text-align: center;">-->
+                        <!--            <t t-set="total_per_vat" t-value="sum(line.price_total - line.price_subtotal for line in doc.invoice_line_ids)"/>-->
+                        <!--            <t t-esc="total_per_vat" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}"/>-->
+                        <!--        </td>-->
+
+                        <!--        <td style="border: 1px solid black; text-align: center;">-->
+                        <!--            <t t-set="total_per_vat" t-value="sum(line.price_total - line.price_subtotal for line in doc.invoice_line_ids)"/>-->
+                        <!--            <t t-esc="total_per_vat" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}"/>-->
+                        <!--        </td>-->
+                        <!--    </tr>-->
+                            <!-- Total row -->
+                        <!--    <tr>-->
+                        <!--        <td style="border: 1px solid black; text-align: center;">-->
+                        <!--            <strong>Total</strong>-->
+                        <!--        </td>-->
+                        <!--        <td style="border: 1px solid black; text-align: center;">-->
+                        <!--            <span t-esc="doc.amount_untaxed"/>-->
+                        <!--        </td>-->
+                        <!--        <td colspan="2" style="border: 1px solid black; text-align: center;">-->
+                        <!--            <t t-set="total_per_vat" t-value="sum(line.price_total - line.price_subtotal for line in doc.invoice_line_ids)"/>-->
+                        <!--            <t t-esc="total_per_vat" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}"/>-->
+                        <!--        </td>-->
+                        <!--        <td style="border: 1px solid black; text-align: center;">-->
+                        <!--            <t t-set="total_per_vat" t-value="sum(line.price_total - line.price_subtotal for line in doc.invoice_line_ids)"/>-->
+                        <!--            <t t-esc="total_per_vat" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}"/>-->
+                        <!--        </td>-->
+                        <!--    </tr>-->
+                        <!--</table>-->
+                        <table width="100%" style="border-collapse: collapse; border: 1px solid black;border-top:hidden">
+                            <!--<tr>-->
+                                <!-- Tax Amount in Words Column -->
+                            <!--    <td colspan="3" style="border: 1px solid black; padding: 10px;">-->
+                            <!--        <strong>Tax Amount (in words) :</strong> -->
+                                   <!--<b><span t-esc="doc.currency_id.name "/> <span t-esc="doc.currency_id.amount_to_text(total_per_vat)"/> Only</b>-->
+                            <!--    </td>-->
+                            <!--</tr>-->
+                            <tr>
+                                <!-- Declaration Column -->
+                                <td colspan="2" style="border: 1px solid black; border-top: hidden;width=50%;padding: 10px;">
+                                    <strong>Declaration</strong><br/>
+                                    <span>
+                                        We declare that this invoice shows the actual price of the<br/> goods described and that all particulars are true and <br/>correct.
+                                    </span>
+                                </td>
+                                <!-- Signature Column -->
+                                <td style="border: 1px solid black; text-align: right; width=50%;padding: 10px;">
+                                    <strong>for KARAIKAL IYANGARS FOODS LIMITED</strong><br/><br/><br/>
+                                    <span>Authorised Signatory</span>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                    <p style="text-align:center">    <span style="text-align:center">This is a Computer Generated Invoice
+</span></p>
+                        
+                    </div>
+            </t>
+        </template>
+
+        <template id="invoice_print_action_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="oi_karaikal_invoice.invoice_print_out_body_template"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

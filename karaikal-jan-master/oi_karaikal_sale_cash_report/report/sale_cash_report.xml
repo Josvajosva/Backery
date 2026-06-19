@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="actions_fixed_reports" model="ir.actions.server">
+        <field name="name">Fixed Payslip Report Doc</field>
+        <field name="model_id" ref="oi_karaikal_sale_cash_report.model_sale_cash_report_wizard"/>
+        <field name="binding_model_id" ref="oi_karaikal_sale_cash_report.model_sale_cash_report_wizard"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">action = model.actions_fixed_reports()</field>
+    </record>
+
+    <record id="fixed_report_view" model="ir.actions.report">
+        <field name="name">Sales Cash Report HTML</field>
+        <field name="model">sale.cash.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">oi_karaikal_sale_cash_report.regular_invoice_action_view_fixed</field>
+        <field name="report_file">oi_karaikal_sale_cash_report.regular_invoice_action_view_fixed</field>
+        <field name="binding_model_id" ref="oi_karaikal_sale_cash_report.model_sale_cash_report_wizard"/>
+    </record>
+
+    <template id="oi_karaikal_sale_cash_report.regular_invoice_action_view_fixed">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="wizard">
+                <t t-if="wizard.report_data">
+                    <t t-set="data" t-value="json.loads(wizard.report_data)"/>
+
+                <a t-attf-href="/web/binary/download_excel_report?wizard_id={{ wizard.id }}"
+                class="btn btn-primary" target="_blank" style="margin: 10px 0; display: inline-block;">
+                Download Excel
+                </a>
+                <h3 style="text-align: center;">Sales Report</h3>
+                <p><strong>Date:</strong> <t t-esc="data['from_date']"/></p>
+                <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <t t-foreach="data['companies']" t-as="company">
+                            <th><t t-esc="company"/></th>
+                        </t>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sales From POS</td>
+                            <t t-set="total_pos" t-value="0"/>
+                            <t t-foreach="data['sales']['pos']" t-as="value">
+                                <td><t t-esc="'{:,.2f}'.format(value) if value else '-'"/></td>
+                                <t t-set="total_pos" t-value="total_pos + (value or 0)"/>
+
+                            </t>
+                            <td><strong><t t-esc="'{:,.2f}'.format(total_pos)"/></strong></td>
+
+                        </tr>
+                        <tr>
+                            <td>Sales From Sales App</td>
+                            <t t-set="total_sales_app" t-value="0"/>
+                            <t t-foreach="data['sales']['sales_app']" t-as="value">
+                                <td><t t-esc="'{:,.2f}'.format(value) if value else '-'"/></td>
+                                <t t-set="total_sales_app" t-value="total_sales_app + (value or 0)"/>
+                            </t>
+                            <td><strong><t t-esc="'{:,.2f}'.format(total_sales_app)"/></strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Sales</strong></td>
+                            <t t-set="total_sales" t-value="0"/>
+                            <t t-foreach="data['sales']['total']" t-as="value">
+                                <td><strong><t t-esc="'{:,.2f}'.format(value) if value else '-'"/></strong></td>
+                                <t t-set="total_sales" t-value="total_sales + (value or 0)"/>
+                            </t>
+                            <td><strong><t t-esc="'{:,.2f}'.format(total_sales)"/></strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="text-align: center; margin-top: 30px;">Cash / Bank Book</h3>
+                <p><strong>Date:</strong> <t t-esc="data['from_date']"/></p>
+                <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th>Particulars</th>
+                            <t t-foreach="data['companies']" t-as="company">
+                                <th colspan="2" style="text-align: center;"><t t-esc="company"/></th>
+                            </t>
+                            <th colspan="2" style="text-align: center;">Total</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <t t-foreach="data['companies']" t-as="company">
+                                <th>Cash</th>
+                                <th>Bank</th>
+                            </t>
+                            <th>Cash</th>
+                            <th>Bank</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Opening Balance</td>
+                            <t t-set="total_cash" t-value="0"/>
+                            <t t-set="total_bank" t-value="0"/>
+                            <t t-foreach="data['cash_book']['opening_balance']" t-as="entry">
+                                <td><t t-esc="'{:,.0f}'.format(entry['cash'])"/></td>
+                                <td><t t-esc="'{:,.0f}'.format(entry['bank'])"/></td>
+                                <t t-set="total_cash" t-value="total_cash + entry['cash']"/>
+                                <t t-set="total_bank" t-value="total_bank + entry['bank']"/>
+                            </t>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_cash)"/></strong></td>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_bank)"/></strong></td>
+                        </tr>
+                        <tr>
+                            <td>POS Cash</td>
+                            <t t-set="total_cash" t-value="0"/>
+                            <t t-set="total_bank" t-value="0"/>
+                            <t t-foreach="data['cash_book']['pos_cash']" t-as="entry">
+                                <td><t t-esc="'{:,.0f}'.format(entry['cash'])"/></td>
+                                <td><t t-esc="'{:,.0f}'.format(entry['bank'])"/></td>
+                                <t t-set="total_cash" t-value="total_cash + entry['cash']"/>
+                                <t t-set="total_bank" t-value="total_bank + entry['bank']"/>
+                            </t>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_cash)"/></strong></td>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_bank)"/></strong></td>
+                        </tr>
+                        <tr>
+                            <td>Settlement</td>
+                            <t t-set="total_cash" t-value="0"/>
+                            <t t-set="total_bank" t-value="0"/>
+                            <t t-foreach="data['cash_book']['settlement']" t-as="entry">
+                                <td><t t-esc="'{:,.0f}'.format(entry['cash'])"/></td>
+                                <td><t t-esc="'{:,.0f}'.format(entry['bank'])"/></td>
+                                <t t-set="total_cash" t-value="total_cash + entry['cash']"/>
+                                <t t-set="total_bank" t-value="total_bank + entry['bank']"/>
+                            </t>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_cash)"/></strong></td>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_bank)"/></strong></td>
+                        </tr>
+                        <tr>
+                            <td>Sales</td>
+                            <t t-set="total_cash" t-value="0"/>
+                            <t t-set="total_bank" t-value="0"/>
+                            <t t-foreach="data['cash_book']['sales']" t-as="entry">
+                                <td><t t-esc="'{:,.0f}'.format(entry['cash'])"/></td>
+                                <td><t t-esc="'{:,.0f}'.format(entry['bank'])"/></td>
+                                <t t-set="total_cash" t-value="total_cash + entry['cash']"/>
+                                <t t-set="total_bank" t-value="total_bank + entry['bank']"/>
+                            </t>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_cash)"/></strong></td>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_bank)"/></strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Closing Balance</strong></td>
+                            <t t-set="total_cash" t-value="0"/>
+                            <t t-set="total_bank" t-value="0"/>
+                            <t t-foreach="data['cash_book']['closing_balance']" t-as="entry">
+                                <td><strong><t t-esc="'{:,.0f}'.format(entry['cash'])"/></strong></td>
+                                <td><strong><t t-esc="'{:,.0f}'.format(entry['bank'])"/></strong></td>
+                                <t t-set="total_cash" t-value="total_cash + entry['cash']"/>
+                                <t t-set="total_bank" t-value="total_bank + entry['bank']"/>
+                            </t>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_cash)"/></strong></td>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_bank)"/></strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deposit to Bank</strong></td>
+                            <t t-set="total_cash" t-value="0"/>
+                            <t t-set="total_bank" t-value="0"/>
+                            <t t-foreach="data['cash_book']['deposit_to_bank']" t-as="entry">
+                                <td><strong><t t-esc="'{:,.0f}'.format(entry['cash'])"/></strong></td>
+                                <td><strong><t t-esc="'{:,.0f}'.format(entry['bank'])"/></strong></td>
+                                <t t-set="total_cash" t-value="total_cash + entry['cash']"/>
+                                <t t-set="total_bank" t-value="total_bank + entry['bank']"/>
+                            </t>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_cash)"/></strong></td>
+                            <td><strong><t t-esc="'{:,.0f}'.format(total_bank)"/></strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+            <t t-else="">
+                <p>No data available for the selected date/companies.</p>
+            </t>
+        </t>
+        </t>
+    </template>
+</odoo>

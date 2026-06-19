@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_helpdesk_director" model="res.groups">
+        <field name="name">Director</field>
+        <field name="category_id" ref="base.module_category_services_helpdesk"/>
+        <field name="implied_ids" eval="[(4, ref('helpdesk.group_helpdesk_user'))]"/>
+    </record>
+</odoo>

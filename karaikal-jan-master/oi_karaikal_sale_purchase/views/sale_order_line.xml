@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_inherit_oi_karaikal_sale_purchase" model="ir.ui.view">
+        <field name="name">view.order.form.inherit.oi.karaikal.sale.purchase</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='order_lines']/field[@name='order_line']/list//field[@name='product_id']" position="before">
+                <field name="product_category_id" column_invisible="True"/>
+            </xpath>
+
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="purchase_type" readonly="1"/>
+                <field name="sales_types" readonly="state in ['sale','cancel']"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_list_inherit_purchase_type" model="ir.ui.view">
+        <field name="name">sale.order.list.inherit.purchase.type</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='state']" position="after">
+                <field name="purchase_type" decoration-danger="purchase_type == 'special_order'" decoration-bf="purchase_type == 'special_order'" widget="badge" />
+            </xpath>
+            <xpath expr="//list" position="attributes">
+                <attribute name="decoration-danger">purchase_type == 'special_order'</attribute>
+                <attribute name="decoration-bf">purchase_type == 'special_order'</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

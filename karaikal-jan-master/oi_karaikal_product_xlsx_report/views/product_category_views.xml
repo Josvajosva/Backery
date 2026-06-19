@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_category_form_view_inherit_stock_report" model="ir.ui.view">
+        <field name="name">product.category.form.inherit.stock.report</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='first']" position="after">
+                <group name="stock_report_config" string="Reporting Configuration">
+                    <field name="exclude_from_stock_report"/>
+                    <field name="inventory_summary_type"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

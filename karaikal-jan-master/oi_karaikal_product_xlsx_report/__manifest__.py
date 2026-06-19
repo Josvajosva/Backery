@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+{
+    'name': 'OI- Karaikal Product Xlsx report',
+    'category': 'Customization',
+    'description': """ """,
+    'summary': 'Stock/Sales',
+    'version': '18.0.1.1',
+    'author': "OODU IMPLEMENTERS PRIVATE LIMITED",
+    'website': "https://www.odooimplementers.com/",
+    'depends': ['sale_management','stock','contacts','mrp'],
+    'data': [
+        'security/ir.model.access.csv',
+        'wizard/wizard.xml',
+        'wizard/sales_wizard.xml',
+        'wizard/manufacture_wizard.xml',
+        'wizard/product_variance.xml',
+        'wizard/inventory_valuation.xml',
+        'data/cron_inventory_valuation_report.xml',
+        'wizard/unmoved_stock_report.xml',
+        'data/cron_unmoved_stock_report.xml',
+        'wizard/combined_stock_report.xml',
+        'views/scrap.xml',
+        'views/partner_views.xml',
+        'views/res_company_views.xml',
+        'views/stock_move_line.xml',
+        'views/product_category_views.xml',
+    ],
+    'application': False,
+    'installable': True,
+    'auto_install': False,
+    'license': 'LGPL-3',
+}

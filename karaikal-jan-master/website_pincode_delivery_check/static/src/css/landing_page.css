@@ -1,0 +1,15 @@
+.order-option-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 6px 12px rgba(192, 159, 128, 0.3) !important;
+}
+
+.order-option-btn:active {
+    transform: translateY(0);
+}
+
+.form-select:focus,
+.form-control:focus {
+    border-color: #c09f80 !important;
+    box-shadow: 0 0 0 0.2rem rgba(192, 159, 128, 0.25) !important;
+}

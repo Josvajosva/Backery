@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="product_product_inherit_view_form" model="ir.ui.view">
+        <field name="name">product.product.inherit.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook" position="inside">
+              <page name="ingredients_nutrition" string="Ingredients &amp; Nutrition">
+     <group name="Ingredients" string="Ingredients &amp; Nutrition">
+
+            <!-- Ingredients Section -->
+            <group string="Ingredients" colspan="2">
+                <div class="o_row">
+                    <div class="o_col">
+                        <field name="ingredients_name"/>
+                        </div>
+                </div>
+            </group>
+
+            <!-- Nutrition Section -->
+            <group name="nutrition" string="Nutrition" colspan="2">
+                <div class="o_col">
+                     <div class="o_row">
+                     <label for="nutrition_first_value1" string="Energy"/>
+                        <field name="nutrition_first_value1" nolabel="1" placeholder="Amount (per 100g)" class="oe_inline"/>
+                        <field name="nutrition_first_value2" nolabel="1" placeholder="Per serving RDA%" class="oe_inline"/>
+                    </div>
+                     <div class="o_row">
+                      <label for="nutrition_second_value1" string="Total Fat"/>
+                    <field name="nutrition_second_value1" nolabel="1" placeholder="Amount (per 100g)" class="oe_inline"/>
+                    <field name="nutrition_second_value2" nolabel="1" placeholder="Per serving RDA%" class="oe_inline"/>
+                    </div>
+
+                     <div class="o_row">  
+                     <label for="nutrition_third_value1" string="Trans Fat"/>
+                    <field name="nutrition_third_value1" nolabel="1" placeholder="Amount (per 100g)" class="oe_inline"/>
+                    <field name="nutrition_third_value2" nolabel="1" placeholder="Per serving RDA%" class="oe_inline"/>
+                     </div>
+                     <div class="o_row">  
+                      <label for="nutrition_fourth_value1" string="Sodium"/>
+                    <field name="nutrition_fourth_value1" nolabel="1" placeholder="Amount (per 100g)" class="oe_inline"/>
+                    <field name="nutrition_fourth_value2" nolabel="1" placeholder="Per serving RDA%" class="oe_inline"/>
+                     </div>
+                     <div class="o_row">  
+                      <label for="nutrition_fifth_value1" string="Total Carbohydrates"/>
+                    <field name="nutrition_fifth_value1" nolabel="1" placeholder="Amount (per 100g)" class="oe_inline"/>
+                    <field name="nutrition_fifth_value2" nolabel="1" placeholder="Per serving RDA%" class="oe_inline"/>
+                     </div>
+                     <div class="o_row"> 
+                      <label for="nutrition_sixth_value1" string="Fiber"/>
+                    <field name="nutrition_sixth_value1" nolabel="1" placeholder="Amount (per 100g)" class="oe_inline"/>
+                    <field name="nutrition_sixth_value2" nolabel="1" placeholder="Per serving RDA%" class="oe_inline"/> 
+                     </div>
+                     <div class="o_row"> 
+                     <label for="nutrition_seventh_value1" string="Sugar"/>
+                    <field name="nutrition_seventh_value1" nolabel="1" placeholder="Amount (per 100g)" class="oe_inline"/>
+                    <field name="nutrition_seventh_value2" nolabel="1" placeholder="Per serving RDA%" class="oe_inline"/> 
+                     </div>
+                </div>
+            </group>
+        </group>
+</page>
+
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="oi_karaikal_batch_report_form_inherit" model="ir.ui.view">
+            <field name="name">oi.karaikal.batch.report.form.inherit</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group[2]/field[@name='origin']" position="after">
+                    <field name="sale_origin"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="stock_picking_list_view_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.list.view.inherit</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <xpath expr="//list/field[@name='origin']" position="after">
+                    <field name="sale_origin"/>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <record id="stock_picking_search_view_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.search.view.inherit</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <filter string="Sale Source" name="sale_origin" domain="[]" context="{'group_by': 'sale_origin'}"/>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <record id="mrp_production_list_view_inherit" model="ir.ui.view">
+            <field name="name">mrp.production.list.view.inherit</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="model">mrp.production</field>
+            <field name="arch" type="xml">
+                <xpath expr="//list/field[@name='origin']" position="after">
+                    <field name="product_category" optional="1"/>
+                    <field name="product_tag_ids" widget="many2many_tags" optional="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_production_form_view_inherit" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.inherit</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="model">mrp.production</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="product_tag_ids" widget="many2many_tags" optional="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_lot_form_inherited" model="ir.ui.view">
+            <field name="name">stock.lot.form.inherit</field>
+            <field name="model">stock.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="manufacturing_date"></field>
+                    <field name="product_expiry_status" readonly="1"></field>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_lot_list_inherited" model="ir.ui.view">
+            <field name="name">stock.lot.list.inherit</field>
+            <field name="model">stock.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='activity_ids']" position="before">
+                    <field name="product_expiry_status" optional="1"></field>
+                </xpath>
+            </field>
+        </record>
+
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_product_form_expiry_inherit_oi_karaikal_product" model="ir.ui.view">
+            <field name="name">view.product.form.expiry.inherit.oi.karaikal.product</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product_expiry.view_product_form_expiry"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='use_expiration_date']" position="after">
+                    <field name="product_expiry" invisible="not use_expiration_date"/>
+                </xpath>
+                <header position="after">
+                    <div class="alert alert-warning mb-0" role="alert" name="warning_expiry"
+                         invisible="not show_expiry_warning">
+                        Product is Expired
+                    </div>
+                    <div class="alert alert-warning mb-0" role="alert" name="warning_recall"
+                         invisible="not show_recall_warning">
+                        Product Expired Tomorrow
+                    </div>
+                </header>
+            </field>
+        </record>
+
+        <record id="view_product_form_inherit_shelf_life" model="ir.ui.view">
+            <field name="name">product.shelf.life.add</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='inventory']" position="inside">
+                    <group>
+                        <field name="shelf_life_days" class="oe_inline" style="vertical-align:baseline"/>
+                        days
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

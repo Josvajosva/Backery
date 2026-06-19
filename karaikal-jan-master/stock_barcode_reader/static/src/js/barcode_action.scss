@@ -1,0 +1,44 @@
+/* === Barcode Reader Animations === */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRow {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Search result hover */
+.o_barcode_reader .o_search_item:hover {
+    background-color: #f8f5f7 !important;
+}
+
+/* Table row hover highlight */
+.o_barcode_reader .o_barcode_line:hover {
+    background-color: #faf8f9 !important;
+}
+
+/* Apply button hover */
+.o_barcode_reader .btn[style*="714B67"]:hover:not(:disabled) {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(113, 75, 103, 0.35) !important;
+}

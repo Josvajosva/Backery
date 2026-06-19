@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_res_partner_form_loyalty" model="ir.ui.view">
+        <field name="name">res.partner.form.loyalty</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='sales_purchases']" position="inside">
+
+                <group string="Loyalty Information">
+                    <field name="whatsapp_number"/>
+                    <field name="dob"/>
+                    <field name="anniversary"/>
+                </group>
+
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Loyalty">
+                    <button name="action_add_joining_bonus"
+                                type="object"
+                                string="Activate Membership"
+                                class="btn-primary"
+                                invisible="has_membership"
+                                confirm="Click ok to activate membership points?" />
+                    <group string="Points">
+                        <group>
+                            <field name="points_earned" readonly="1"/>
+                            <field name="points_redeemed" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="has_membership" readonly="1"/>
+                            <field name="available_points" readonly="1"/>
+                            <field name="last_pos_order_date" readonly="1"/>
+                        </group>
+                    </group>
+
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_pos_order_form_date_edit" model="ir.ui.view">
+        <field name="name">pos.order.form.date.edit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+oi_karaikal_sale_cash_report.access_sale_cash_report_wizard,access_sale_cash_report_wizard,oi_karaikal_sale_cash_report.model_sale_cash_report_wizard,base.group_user,1,1,1,1

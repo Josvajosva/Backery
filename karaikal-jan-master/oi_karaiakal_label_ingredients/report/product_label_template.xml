@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="ingredients_label_main_template">
+    <t t-call="web.basic_layout">
+    <!-- Loop through each record in docs -->
+      <t t-foreach="docs" t-as="o">
+           <table style="width:100%; border:hidden;font-size:5px;">
+                <tr>
+                    <!-- Product & Lot Info -->
+                    <td style="text-align:left; vertical-align:top; font-size:8px; padding:2px; width:70%;border:hidden">
+                        <table style="width:100%; border:hidden; font-size:8px;">
+                            <tr><td style="border:hidden;"><strong><span t-esc="o.product_id.name" style="font-size:8px;border:hidden;"/></strong></td></tr>
+                            <tr><td style="border:hidden;"><span style="font-size:9px" t-esc="o.name"/></td></tr>
+                            <tr><td style="border:hidden;"><strong><span style="font-size:8px; border:hidden;">MFG.Date : <span t-esc="o.create_date" t-options="{'widget':'date','format':'dd/MM/yyyy'}"/></span></strong></td></tr>
+                            <tr><td style="border:hidden;"><strong><span style="font-size:8px; border:hidden;">Best Before: <span t-esc="o.expiration_date" t-options="{'widget':'date','format':'dd/MM/yyyy'}"/></span></strong></td></tr>
+                            <tr><td style="border:hidden;"><strong><span style="font-size:8px; border:hidden;">MRP : ₹<span style="font-size:8px;border:hidden;" t-esc="'{:.2f}'.format(o.product_id.lst_price)"/></span></strong> <span style="font-size:5px; border:hidden;">(Incl.Taxes)</span></td></tr>
+                        </table>
+                    </td>
+
+                    <!-- Barcode -->
+                   
+                </tr>
+                 <tr>
+        <th style="padding-left:2px;text-align:left;border:hidden;font-size:7px"><strong>Ingredients</strong></th>
+    </tr>
+    <tr>
+        <td style="width:100%;padding-left:2px;border:hidden;font-size:7px" t-esc="o.product_id.ingredients_name or ''"/>
+     
+    </tr>
+              </table>
+              <!-- Ingredients Section -->
+
+
+                <!-- Nutrition Section -->
+         <table style="width:95%;hieght:10;font-size:7px; border-collapse: collapse; text-align:left;" border="1">
+            <thead>
+                <tr>
+                    <th style="width:10%;padding-left:2px;font-size:5px"><strong>Nutrient</strong></th>
+                    <th style="width:10%;padding-left:2px;font-size:5px"><strong>Amount (per 100g)</strong></th>
+                    <th style="width:10%;;padding-left:2px;font-size:5px"><strong>Per serving RDA%</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding-left:2px">Energy</td>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_first_value1 or ''"/>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_first_value2 or ''"/>
+                </tr>
+                <tr>
+                    <td style="padding-left:2px">Total Fat</td>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_second_value1 or ''"/>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_second_value2 or ''"/>
+                </tr>
+                <tr>
+                    <td style="padding-left:2px">Trans Fat</td>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_third_value1 or ''"/>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_third_value2 or ''"/>
+                </tr>
+                <tr>
+                    <td style="padding-left:2px">Sodium</td>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_fourth_value1 or ''"/>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_fourth_value2 or ''"/>
+                </tr>
+                <tr>
+                    <td style="padding-left:2px">Total Carbohydrates</td>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_fifth_value1 or ''"/>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_fifth_value2 or ''"/>
+                </tr>
+                <tr>
+                    <td style="padding-left:2px">Fiber</td>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_sixth_value1 or ''"/>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_sixth_value2 or ''"/>
+                </tr>
+                <tr>
+                    <td style="padding-left:2px">Sugar</td>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_seventh_value1 or ''"/>
+                    <td style="padding-left:2px" t-esc="o.product_id.nutrition_seventh_value2 or ''"/>
+                </tr>
+            </tbody>
+        </table>
+       
+      
+<table>
+    <tr>
+         <td style="text-align:center; vertical-align:top; width:30%;padding-bottom:10px; border:hidden;padding-top:10px">
+                        <t t-set="final_barcode" t-value="''"/>
+                        <t t-if="env.user.has_group('stock.group_stock_lot_print_gs1')">
+                            <t t-if="o.product_id.valid_ean" t-set="final_barcode" t-value="'01' + '0' * (14 - len(o.product_id.barcode)) + o.product_id.barcode"/>
+                            <t t-if="o.product_id.tracking == 'lot'" t-set="final_barcode" t-value="(final_barcode or '') + '10' + o.name"/>
+                            <t t-elif="o.product_id.tracking == 'serial'" t-set="final_barcode" t-value="(final_barcode or '') + '21' + o.name"/>
+                        </t>
+                        <t t-if="env.user.has_group('stock.group_stock_lot_print_gs1') and final_barcode">
+                            <span t-out="final_barcode" t-options="{'widget':'barcode','symbology':'ECC200DataMatrix','img_style':'width:20mm; height:21mm'}"/>
+                        </t>
+                        <t t-else="">
+                            <span t-field="o.name" t-options="{'widget':'barcode','img_style':'width:20mm; height:21mm'}"/>
+                        </t>
+                    </td>
+    </tr>
+</table>
+        </t>
+    </t>
+    
+</template>
+
+</odoo>

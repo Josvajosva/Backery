@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="cancel_reason_capture_view_form" model="ir.ui.view">
+            <field name="name">cancel.reason.capture.view.form</field>
+            <field name="model">cancel.reason.capture</field>
+            <field name="arch" type="xml">
+                <form string="Reason for the cancellation">
+                    <p class="oe_grey">
+                    Choose the reason for the cancellation of the
+                    picking.
+                    </p>
+                    <group>
+                        <field name="reason_id" widget="selection" />
+                    </group>
+                    <footer>
+                        <button name="button_confirm" string="Confirm" type="object" class="oe_highlight" />
+                    or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="cancel_reason_capture_action" model="ir.actions.act_window">
+            <field name="name">Cancel Reasons</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cancel.reason.capture</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="cancel_reason_capture_view_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,100 @@
+<odoo>
+	<data>
+		<template id="batch_transfer_external_layout">
+			<div t-attf-class="header" t-att-style="report_header_style">
+			</div>
+				<div t-attf-class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+				<t t-raw="0"/>
+			</div>
+			<div t-attf-class="footer o_standard_footer">
+				
+		</div>
+	</template>
+	<template id="batch_transfer_body_template">
+		<t t-call="oi_karaikal_batch_report.batch_transfer_external_layout">
+			<t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+            <div class="page">
+                <table width="100%" style="border:hidden;border-top:1px solid black;">
+                    <tr>
+                        <b>
+                        <td width="50%" style="border:hidden;border-top:1px solid black;font-family:Times new roman;">
+                            <span t-field="doc.company_id.name"/><br/>
+                            <span t-field="doc.company_id.street"/>
+    						<span t-field="doc.company_id.street2"/><br/>
+    						<span t-field="doc.company_id.city"/><br/>
+    						<span t-field="doc.company_id.state_id.name"/>,<span t-field="doc.company_id.zip"/><br/>
+    						<span t-field="doc.company_id.country_id.name"/><br/>
+    						<span t-field="doc.company_id.vat"/>
+                        </td>
+                        <td width="50%" style="border:hidden;border-top:1px solid black;font-family:Times new roman;padding-top:10px;">
+                            <span t-field="doc.name" t-options="{'widget': 'barcode', 'width': 600, 'height': 150, 'img_style': 'width:300px;height:50px;'}">Batch</span>
+                        </td>
+                    </b>
+                    </tr>
+                    
+                </table>
+                <table width="100%" style="border:hidden;">
+                    <tr>
+                        <td colspan="3" width="100%" style="border:hidden;text-align:left">
+                            <h1><span t-field="doc.name"/></h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="33%" style="border:hidden;font-family:Times new roman;">
+                            <span><b>Responsible :</b></span><br/>
+                            <span t-field="doc.user_id.name"/>
+                        </td>
+                        <td width="33%" style="border:hidden;font-family:Times new roman;">
+                            <span><b>Operation Type :</b></span><br/>
+                            <span t-field="doc.picking_type_id.name"/>
+                        </td>
+                        <td width="33%" style="border:hidden;font-family:Times new roman;">
+                            <span><b>Scheduled Type :</b></span><br/>
+                            <span t-field="doc.scheduled_date"/>
+                        </td>
+                    </tr>
+                </table><br/>
+                <table width="50%" style="border:1px solid black;">
+                   <tr width="50">
+                        <th width="25%" style="text-align:center;border:1px solid black;font-size:18px;;padding:3px;font-family:Times new roman;">Reference</th>
+					    <th width="25%" style="text-align:center;border:1px solid black;font-size:18px;;padding:3px;font-family:Times new roman;">Source Document</th>
+                   </tr>
+                   <tr width="50%" t-foreach="doc.picking_ids" t-as="line">
+                        <td width="25%" style="text-align:left;border:1px solid black;font-size:15px;;padding:3px;font-family:Times new roman;"><span t-field="line.name"/></td>
+						<td width="25%" style="text-align:left;border:1px solid black;font-size:15px;;padding:3px;font-family:Times new roman;"><span t-field="line.sale_origin"/></td>
+                   </tr>
+                </table><br/>
+                <table width="100%" style="border:1px solid black;border-collapse: collapse;">
+					<tr>
+						<b>
+							<th width="40%" style="text-align:center;border:1px solid black;font-size:18px;;padding:3px;font-family:Times new roman;">Product</th>
+							<th width="15%" style="text-align:center;border:1px solid black;font-size:18px;;padding:3px;font-family:Times new roman;">Transfer</th>
+							<th width="15%" style="text-align:center;border:1px solid black;font-size:18px;;padding:3px;font-family:Times new roman;">Demand</th>
+							<th width="15%" style="text-align:center;border:1px solid black;font-size:18px;;padding:3px;font-family:Times new roman;">Quantity</th>
+							<th width="15%" style="text-align:center;border:1px solid black;font-size:18px;;padding:3px;font-family:Times new roman;">Unit Of Measure</th>
+						
+						</b>
+					</tr>
+					<tr width="100%" t-foreach="doc.operation_batch_ids" t-as="line">
+						<b>
+							<td width="40%" style="text-align:left;border:1px solid black;font-size:15px;;padding:3px;font-family:Times new roman;"><span t-field="line.product_id"/></td>
+							<td width="15%" style="text-align:left;border:1px solid black;font-size:15px;;padding:3px;font-family:Times new roman;"><span t-field="line.transfer_id.name"/></td>
+							<td width="15%" style="text-align:center;border:1px solid black;font-size:15px;;padding:3px;font-family:Times new roman;"><span t-field="line.qty"/></td>
+							<td width="15%" style="text-align:center;border:1px solid black;font-size:15px;;padding:3px;font-family:Times new roman;"><span t-field="line.demand"/></td>
+							<td width="15%" style="text-align:center;border:1px solid black;font-size:15px;;padding:3px;font-family:Times new roman;"><span t-field="line.unit_of_measure"/></td>
+							
+						</b>
+					</tr>
+				</table><br/>
+            </div>
+	    </t>
+</template>
+<template id="batch_transfer_template">
+	<t t-call="web.html_container">
+		<t t-foreach="docs" t-as="doc">
+			<t t-call="oi_karaikal_batch_report.batch_transfer_body_template" t-lang="doc.partner_id.lang" />
+		</t>
+	</t>
+</template>
+</data>
+</odoo>

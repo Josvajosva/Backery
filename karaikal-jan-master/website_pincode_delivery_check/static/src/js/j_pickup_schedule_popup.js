@@ -1,0 +1,1 @@
+// Popup removed. ASAP/Scheduled handled inline on delivery page by checkout_pickup.js

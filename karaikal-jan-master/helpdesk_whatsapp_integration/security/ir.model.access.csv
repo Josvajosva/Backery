@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_ticket_type_user,helpdesk.ticket.type.user,model_helpdesk_ticket_type,base.group_user,1,1,1,1
+access_helpdesk_wai_send_message_user,access.helpdesk.wai.send.message.user,model_helpdesk_wai_send_message,base.group_user,1,1,1,1
+access_loyalty_point_user,loyalty.point.line user,model_loyalty_point_line,base.group_user,1,1,1,1
+access_wa_reply_template_user,wa.reply.template.user,model_wa_reply_template,base.group_user,1,1,1,1

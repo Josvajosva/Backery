@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_category_form_inherit" model="ir.ui.view">
+        <field name="name">product.category.form.inherit</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='first']" position="after">
+                <group string="Sequence Configuration">
+                    <group>
+                        <field name="prefix" placeholder="e.g., CAT"/>
+                        <field name="starting_number" placeholder="e.g., 1"/>
+                        <field name="number" string="Next Number" readonly="0" placeholder="Auto-generated"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

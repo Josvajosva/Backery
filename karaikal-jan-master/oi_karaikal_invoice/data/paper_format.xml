@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_appointment_letter_oi_karaikal_invoice" model="report.paperformat">
+            <field name="name">B2B Invoice</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">25</field>
+            <field name="margin_bottom">55</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">15</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="invoice_print_action_template_custom" model="ir.actions.report">
+            <field name="name">B2B Invoice</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">oi_karaikal_invoice.invoice_print_action_template</field>
+            <field name="report_file">oi_karaikal_invoice.invoice_print_action_template</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="oi_karaikal_invoice.paperformat_appointment_letter_oi_karaikal_invoice"/>
+        </record>
+        <!-- email template -->
+        <record id="mail_template_account_payment" model="mail.template">
+            <field name="name">Payment Confirmation</field>
+            <field name="model_id" ref="account.model_account_payment"/>
+            <field name="subject"></field>
+            <field name="email_from"></field>
+            <field name="email_to"></field>
+        </record>
+
+
+         <record id="e_waybill_action_template_custom" model="ir.actions.report">
+            <field name="name">e-Way Bill</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">oi_karaikal_invoice.e_way_bill_action_template</field>
+            <field name="report_file">oi_karaikal_invoice.e_way_bill_action_template</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_type">report</field>
+        </record>
+            
+    </data>
+</odoo>

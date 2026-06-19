@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="oi_helpdesk_dashboard.UserWiseDashboard">
+        <div class="o_user_wise_dashboard h-100 overflow-auto bg-100">
+            <div class="container-fluid px-3 px-md-4 py-3 py-md-4">
+
+                <div t-if="state.loading" class="text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
+                <div t-elif="state.error" class="alert alert-danger shadow-sm" role="alert">
+                    <t t-out="state.error"/>
+                </div>
+
+                <div t-else="" class="d-flex flex-column gap-4">
+
+                    <div class="row g-3 g-lg-4">
+                        <div class="col-12 col-md-6">
+                            <div
+                                class="card border-0 shadow-sm h-100 dashboard-kpi dashboard-kpi-total dashboard-kpi-clickable rounded-4 overflow-hidden"
+                                role="button"
+                                tabindex="0"
+                                t-on-click="onViewMoreAllOpen"
+                                t-on-keydown="(ev) => this.onKpiKeydown(ev, 'total')"
+                                title="Open all open tickets"
+                            >
+                                <div class="card-body p-4 p-lg-4 d-flex gap-4">
+                                    <div class="dashboard-kpi-icon dashboard-kpi-icon-total flex-shrink-0">
+                                        <i class="fa fa-th-large fa-lg" aria-hidden="true"/>
+                                    </div>
+                                    <div class="flex-grow-1 min-w-0 d-flex flex-column">
+                                        <div class="dashboard-kpi-label text-uppercase small fw-semibold mb-2">Total open tickets</div>
+                                        <div class="dashboard-kpi-value display-5 fw-bold text-body lh-sm mb-0" t-out="state.total"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div
+                                class="card border-0 shadow-sm h-100 dashboard-kpi dashboard-kpi-mine dashboard-kpi-clickable rounded-4 overflow-hidden"
+                                role="button"
+                                tabindex="0"
+                                t-on-click="onViewMoreMyTickets"
+                                t-on-keydown="(ev) => this.onKpiKeydown(ev, 'mine')"
+                                title="Open my open tickets"
+                            >
+                                <div class="card-body p-4 p-lg-4 d-flex gap-4">
+                                    <div class="dashboard-kpi-icon dashboard-kpi-icon-mine flex-shrink-0">
+                                        <i class="fa fa-user fa-lg" aria-hidden="true"/>
+                                    </div>
+                                    <div class="flex-grow-1 min-w-0 d-flex flex-column">
+                                        <div class="dashboard-kpi-label text-uppercase small fw-semibold mb-2">My tickets</div>
+                                        <div class="dashboard-kpi-value display-5 fw-bold text-primary lh-sm mb-0" t-out="state.myOpenCount"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden dashboard-table-card">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0 align-middle dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="dashboard-table-th">Assignee</th>
+                                        <th scope="col" class="dashboard-table-th text-center">Open tickets</th>
+                                        <th scope="col" class="dashboard-table-th text-end">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-if="!state.rows.length">
+                                        <td colspan="3" class="text-muted text-center py-5 dashboard-table-empty">No assignees to show.</td>
+                                    </tr>
+                                    <tr
+                                        t-foreach="state.rows"
+                                        t-as="row"
+                                        t-key="row.user_id"
+                                    >
+                                        <td class="dashboard-table-td-name" t-out="row.user_name"/>
+                                        <td class="dashboard-table-td-count text-center">
+                                            <span class="dashboard-count-pill" t-out="row.ticket_count"/>
+                                        </td>
+                                        <td class="dashboard-table-td-action text-end">
+                                            <button type="button" class="btn btn-sm btn-outline-primary fw-semibold rounded-pill px-3" t-on-click.stop="() => this.onViewMoreForAssignee(row)">
+                                                View more
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

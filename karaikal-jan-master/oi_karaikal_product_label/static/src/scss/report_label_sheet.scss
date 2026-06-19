@@ -1,0 +1,506 @@
+.o_label_sheet_new {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    page-break-before: always;
+    &.o_label_dymo {
+        font-size: 90%;
+        width: 100%;
+        height: 100%;
+    }
+    div {
+        padding: 0;
+    }
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .col-8, .col-4 {
+        padding: 0 1mm;
+    }
+    .col-8 {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+    }
+    .col-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    .label {
+        padding: 0.5em;
+        border: none;
+        margin-bottom: 0.5em;
+        font-size: 0.9em;
+    }
+    div.o_label_small_text {
+        font-size: 60%;
+        line-height: 130%;
+    }
+    div.o_label_name {
+        background-color: ghostwhite;
+        height: auto;
+        overflow: hidden;
+        font-size: 1.2em;
+    }
+    div.o_label_full {
+        overflow: hidden;
+        padding: 0;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+    }
+    div.o_label_left_column {
+        float: left;
+        font-size: 1em;
+        overflow: hidden;
+        width: 50%;
+    }
+    div.o_label_right_column {
+        float: right;
+        font-size: 1em;
+        overflow: hidden;
+        width: 50%;
+    }
+    div.o_label_small_barcode {
+        font-size: 0.8em;
+        padding: 0;
+        line-height: normal;
+        width: 100%;
+    }
+    strong.o_label_price {
+        font-size: 1.5em;
+    }
+    strong.o_label_price_medium {
+        font-size: 1.3em;
+        line-height: normal;
+        padding: 0;
+        padding-right: 2mm;
+    }
+    strong.o_label_price_small {
+        font-size: 1em;
+        padding: 0 4px;
+        padding-right: 2mm;
+    }
+    div.o_label_extra_data {
+        overflow: hidden;
+        height: auto;
+        padding: 0;
+    }
+    div.o_label_clear {
+        clear: both;
+    }
+    div.o_label_4x12 {
+        padding: 0;
+        line-height: 1;
+        font-size: 55%;
+        overflow: visible;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+}
+// dymo1 over
+.o_label_sheet_new_dymo2 {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    page-break-before: always;
+    &.o_label_dymo {
+        font-size: 90%;
+        width: 100%;
+        height: 100%;
+    }
+    div {
+        padding: 0;
+    }
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .col-8, .col-4 {
+        padding: 0 1mm;
+    }
+    .col-8 {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+    }
+    .col-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    .label {
+        padding: 0.5em;
+        border: none;
+        margin-bottom: 0.5em;
+        font-size: 0.9em;
+    }
+    div.o_label_small_text {
+        font-size: 60%;
+        line-height: 130%;
+    }
+    div.o_label_name {
+        background-color: ghostwhite;
+        height: auto;
+        overflow: hidden;
+        font-size: 1.2em;
+    }
+    div.o_label_full {
+        overflow: hidden;
+        padding: 0;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+    }
+    div.o_label_left_column {
+        float: left;
+        font-size: 1em;
+        overflow: hidden;
+        width: 50%;
+    }
+    div.o_label_right_column {
+        float: right;
+        font-size: 1em;
+        overflow: hidden;
+        width: 50%;
+    }
+    div.o_label_small_barcode {
+        font-size: 0.8em;
+        padding: 0;
+        line-height: normal;
+        width: 100%;
+    }
+    strong.o_label_price {
+        font-size: 1.5em;
+    }
+    strong.o_label_price_medium {
+        font-size: 1.3em;
+        line-height: normal;
+        padding: 0;
+        padding-right: 2mm;
+    }
+    strong.o_label_price_small {
+        font-size: 1em;
+        padding: 0 4px;
+        padding-right: 2mm;
+    }
+    div.o_label_extra_data {
+        overflow: hidden;
+        height: auto;
+        padding: 0;
+    }
+    div.o_label_clear {
+        clear: both;
+    }
+    div.o_label_4x12 {
+        padding: 0;
+        line-height: 1;
+        font-size: 55%;
+        overflow: visible;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+}
+// dymo2 over
+// dymo3 start
+.o_label_sheet_new_dymo3 {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    page-break-before: always;
+    padding-top: 30px;
+    // margin-top: 30px;
+    &.o_label_dymo {
+        font-size: 90%;
+        width: 100%;
+        height: 100%;
+    }
+    div {
+        padding: 0;
+    }
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .col-8, .col-4 {
+        padding: 0 1mm;
+    }
+    .col-8 {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+    }
+    .col-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    .label {
+        padding: 0.5em;
+        border: none;
+        margin-bottom: 0.5em;
+        font-size: 0.9em;
+    }
+    div.o_label_small_text {
+        font-size: 60%;
+        line-height: 130%;
+    }
+    div.o_label_name {
+        background-color: ghostwhite;
+        height: auto;
+        overflow: hidden;
+        font-size: 1.2em;
+    }
+    div.o_label_full {
+        overflow: hidden;
+        padding: 0;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+    }
+    div.o_label_left_column {
+        float: left;
+        font-size: 1em;
+        overflow: hidden;
+        width: 50%;
+    }
+    div.o_label_right_column {
+        float: right;
+        font-size: 1em;
+        overflow: hidden;
+        width: 50%;
+    }
+    div.o_label_small_barcode {
+        font-size: 0.8em;
+        padding: 0;
+        line-height: normal;
+        width: 100%;
+    }
+    strong.o_label_price {
+        font-size: 1.5em;
+    }
+    strong.o_label_price_medium {
+        font-size: 1.3em;
+        line-height: normal;
+        padding: 0;
+        padding-right: 2mm;
+    }
+    strong.o_label_price_small {
+        font-size: 1em;
+        padding: 0 4px;
+        padding-right: 2mm;
+    }
+    div.o_label_extra_data {
+        overflow: hidden;
+        height: auto;
+        padding: 0;
+    }
+    div.o_label_clear {
+        clear: both;
+    }
+    div.o_label_4x12 {
+        padding: 0;
+        line-height: 1;
+        font-size: 55%;
+        overflow: visible;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+}
+// dymo4 start
+.o_label_sheet_new_dymo4 {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    page-break-before: always;
+    &.o_label_dymo {
+        font-size: 10px;
+        width: 100%;
+        height: 100%;
+    }
+    div {
+        padding: 0;
+    }
+    .row {
+        display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    }
+    .col-2,.col-1, .col-10 {
+        padding: 0 1mm;
+    }
+    .col-2 {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    .col-1 {
+        flex: 0 0 10%;
+        max-width: 10%;
+    }
+    .col-10 {
+        flex: 0 0 70%;
+        max-width: 70%;
+    }
+    
+    .label {
+        padding: 0.5em;
+        //  margin-bottom: 0.5em;
+        font-size: 0.9em;
+    }
+}
+// 
+.o_label_sheet_new_dymo5 {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    page-break-before: always;
+    &.o_label_dymo {
+        font-size: 10px;
+        width: 100%;
+        height: 100%;
+    }
+    div {
+        padding: 0;
+    }
+    .row {
+        display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    }
+    .col-2, .col-10 {
+        padding: 0 1mm;
+    }
+    // .col-2 {
+    //     flex: 0 0 20%;
+    //     max-width: 20%;
+    // }
+    .col-10 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .label {
+        padding: 0.5em;
+        //  margin-bottom: 0.5em;
+        font-size: 0.9em;
+    }
+}
+// dymo6 start
+.o_label_sheet_new_dymo6 {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    page-break-before: always;
+    &.o_label_dymo {
+        // font-size: 60%;
+        width: 100%;
+        height: 100%;
+    }
+    div {
+        padding: 0;
+    }
+    .row {
+        display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    }
+    // .col-2, .col-10 {
+    //     padding: 0 1mm;
+    // }
+    // .col-2 {
+    //     flex: 0 0 20%;
+    //     max-width: 20%;
+    // }
+    .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .label {
+        // padding: 0.5em;
+        //  margin-bottom: 0.5em;
+        font-size: 0.2em;
+    }
+}
+// dymo7 start
+.o_label_sheet_new_dymo7 {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    page-break-before: always;
+    &.o_label_dymo {
+        font-size: 10px;
+        width: 100%;
+        height: 100%;
+    }
+    div {
+        padding: 0;
+    }
+    .row {
+        display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    }
+    // .col-2, .col-10 {
+    //     padding: 0 1mm;
+    // }
+    // .col-2 {
+    //     flex: 0 0 20%;
+    //     max-width: 20%;
+    // }
+    .col-10 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    // .label {
+    //     padding: 0.2em;
+    //     //  margin-bottom: 0.5em;
+    //     font-size: 0.9em;
+    // }
+}
+// dymo8 start
+.o_label_sheet_new_dymo8 {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    page-break-before: always;
+    &.o_label_dymo {
+        // font-size: 60%;
+        width: 100%;
+        height: 100%;
+    }
+    div {
+        padding: 0;
+    }
+    .row {
+        display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    }
+    // .col-2, .col-10 {
+    //     padding: 0 1mm;
+    // }
+    // .col-2 {
+    //     flex: 0 0 20%;
+    //     max-width: 20%;
+    // }
+    .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .label {
+        padding: 0.5em;
+        //  margin-bottom: 0.5em;
+        font-size: 0.2em;
+    }
+}
+

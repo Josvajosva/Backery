@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="oi_helpdesk_dashboard.TeamKanbanDashboard">
+        <div class="oi-hd-team-kanban h-100 overflow-auto bg-100">
+            <div class="container-fluid px-3 px-md-4 py-4">
+
+                <div class="d-flex align-items-center gap-2 mb-4" t-if="env.config?.historyBack and !props.action?.context?.helpdesk_dashboard_hide_back">
+                    <button type="button" class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2 rounded-pill px-3" t-on-click="onBack">
+                        <i class="fa fa-arrow-left" aria-hidden="true"/>
+                        <span>Back</span>
+                    </button>
+                </div>
+
+                <div t-if="state.loading" class="text-center py-5">
+                    <div class="spinner-border oi-hd-kanban-accent" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
+                <div t-elif="state.error" class="alert alert-danger shadow-sm" role="alert">
+                    <t t-out="state.error"/>
+                </div>
+
+                <div t-elif="!state.teams.length" class="text-center text-muted py-5">
+                    No team cards for this assignee. Tickets may exist without a team, or there are no open / recently closed tickets in scope.
+                </div>
+
+                <div t-else="" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+                    <div t-foreach="state.teams" t-as="team" t-key="team.id" class="col">
+                        <div class="card oi-hd-team-card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h3 class="h5 fw-bold text-body mb-2" t-out="team.name"/>
+                                <div class="mb-3" t-if="team.alias_email">
+                                    <a class="oi-hd-team-alias small text-decoration-none d-inline-flex align-items-center gap-1" t-att-href="'mailto:' + team.alias_email">
+                                        <i class="fa fa-envelope-o" aria-hidden="true"/>
+                                        <span t-out="team.alias_email"/>
+                                    </a>
+                                </div>
+                                <div t-else="" class="mb-3 small text-muted">—</div>
+
+                                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
+                                    <button type="button" class="btn oi-hd-team-tickets-btn text-white fw-semibold rounded-3 px-4 py-2 border-0" t-on-click="() => this.openTeamOpenTickets(team.id)">
+                                        Tickets
+                                    </button>
+                                    <div class="text-end">
+                                        <div class="small text-muted">Tickets Closed</div>
+                                        <div class="oi-hd-stat-num fs-2 fw-bold lh-1 mt-1" t-out="team.closed"/>
+                                    </div>
+                                </div>
+
+                                <div class="row g-0 oi-hd-team-footer border-top pt-3 mt-auto text-center">
+                                    <div class="col-3 oi-hd-footer-cell">
+                                        <button type="button" class="oi-hd-footer-metric-btn w-100 text-center border-0 bg-transparent p-2 rounded-2" t-on-click="() => this.openTeamMetricTickets(team.id, 'open')" t-att-aria-label="'Open tickets for ' + team.name">
+                                            <div class="oi-hd-stat-num fw-bold fs-5" t-out="team.open"/>
+                                            <div class="small text-muted text-uppercase mt-1">Open</div>
+                                        </button>
+                                    </div>
+                                    <div class="col-3 oi-hd-footer-cell border-start">
+                                        <button type="button" class="oi-hd-footer-metric-btn w-100 text-center border-0 bg-transparent p-2 rounded-2" t-on-click="() => this.openTeamMetricTickets(team.id, 'unassigned')" t-att-aria-label="'Unassigned tickets on ' + team.name">
+                                            <div class="oi-hd-stat-num fw-bold fs-5" t-out="team.unassigned"/>
+                                            <div class="small text-muted text-uppercase mt-1">Unassigned</div>
+                                        </button>
+                                    </div>
+                                    <div class="col-3 oi-hd-footer-cell border-start">
+                                        <button type="button" class="oi-hd-footer-metric-btn w-100 text-center border-0 bg-transparent p-2 rounded-2" t-on-click="() => this.openTeamMetricTickets(team.id, 'urgent')" t-att-aria-label="'Urgent tickets for ' + team.name">
+                                            <div class="oi-hd-stat-num fw-bold fs-5" t-out="team.urgent"/>
+                                            <div class="small text-muted text-uppercase mt-1">Urgent</div>
+                                        </button>
+                                    </div>
+                                    <div class="col-3 oi-hd-footer-cell border-start">
+                                        <button type="button" class="oi-hd-footer-metric-btn w-100 text-center border-0 bg-transparent p-2 rounded-2" t-on-click="() => this.openTeamMetricTickets(team.id, 'failed')" t-att-aria-label="'Failed SLA tickets for ' + team.name">
+                                            <div class="oi-hd-stat-num fw-bold fs-5" t-out="team.failed"/>
+                                            <div class="small text-muted text-uppercase mt-1">Failed</div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

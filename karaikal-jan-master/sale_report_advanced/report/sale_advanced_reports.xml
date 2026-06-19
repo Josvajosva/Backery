@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    Actions for pdf report -->
+    <record id="action_sale_indent" model="ir.actions.report">
+        <field name="name">Product Sales Indent</field>
+        <field name="model">sale.report.indent</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_report_advanced.sales_indent_view</field>
+        <field name="report_file">sale_report_advanced.sales_indent_view</field>
+    </record>
+</odoo>

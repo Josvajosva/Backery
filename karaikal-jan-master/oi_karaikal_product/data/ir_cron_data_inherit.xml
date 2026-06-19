@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <record id="ir_cron_send_availability_email" model="ir.cron">
+        <field name="name">Reset Product Different Field</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="model_id" ref="model_product_product"/>
+        <field name="code">model.reset_different_field()</field>
+        <field name="state">code</field>
+    </record>
+
+    <record id="ir_cron_send_product_report" model="ir.cron">
+            <field name="name">Send Daily Product Report</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="model_id" ref="model_product_product"/>
+            <field name="code">model.send_product_report()</field>
+            <field name="state">code</field>
+    </record>
+
+</odoo>

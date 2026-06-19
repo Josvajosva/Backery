@@ -1,0 +1,70 @@
+.oi-hd-team-kanban {
+    --oi-hd-teal: #0d9488;
+    --oi-hd-teal-dark: #0f766e;
+    --oi-hd-purple: #5b4b8a;
+    --oi-hd-purple-hover: #4a3d72;
+
+    .oi-hd-kanban-accent {
+        color: var(--oi-hd-teal);
+        border-color: var(--oi-hd-teal);
+    }
+
+    .oi-hd-team-card {
+        background: var(--bs-body-bg, #fff);
+        transition: box-shadow 0.2s ease, transform 0.15s ease;
+
+        &:hover {
+            box-shadow: 0 0.65rem 1.75rem rgba(15, 23, 42, 0.1) !important;
+        }
+    }
+
+    .oi-hd-team-alias {
+        color: var(--oi-hd-teal);
+
+        &:hover {
+            color: var(--oi-hd-teal-dark);
+        }
+    }
+
+    .oi-hd-team-tickets-btn {
+        background: var(--oi-hd-purple);
+
+        &:hover {
+            background: var(--oi-hd-purple-hover);
+            color: #fff;
+        }
+
+        &:focus-visible {
+            box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--oi-hd-purple) 35%, transparent);
+        }
+    }
+
+    .oi-hd-stat-num {
+        color: var(--oi-hd-teal);
+    }
+
+    .oi-hd-team-footer {
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+    }
+
+    .oi-hd-footer-cell {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+    }
+
+    .oi-hd-footer-metric-btn {
+        cursor: pointer;
+        color: inherit;
+        transition: background-color 0.15s ease;
+
+        &:hover {
+            background-color: rgba(13, 148, 136, 0.08) !important;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--oi-hd-teal);
+            outline-offset: 2px;
+        }
+    }
+}

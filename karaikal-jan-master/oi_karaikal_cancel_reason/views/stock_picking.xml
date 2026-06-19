@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="stock_picking_view_form_oi_karaikal_cancel_reason" model="ir.ui.view">
+        <field name="name">stock.picking.form.oi_karaikal_cancel_reason</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <button name="%(cancel_reason_capture_action)d" string="Cancel Transfer" type="action" invisible="state not in ('assigned', 'confirmed', 'draft', 'waiting')" groups="base.group_user"/>
+            </xpath>
+            <xpath expr="//page[@name='extra']/group/group/field[@name='company_id']" position="after">
+                <field name="cancel_reason_id"></field>
+            </xpath>
+
+
+        </field>
+    </record>
+
+    <!--  -->
+    <record id="stock_picking_cancel_reason_view_list" model="ir.ui.view">
+        <field name="name">stock.picking.cancel.reason.list</field>
+        <field name="model">stock.picking.cancel.reason</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+
+    <record id="stock_picking_cancel_reason_view_form" model="ir.ui.view">
+        <field name="name">stock.picking.cancel.reason.form</field>
+        <field name="model">stock.picking.cancel.reason</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_picking_cancel_reason_action" model="ir.actions.act_window">
+        <field name="name">Cancel Reasons</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.picking.cancel.reason</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="stock_picking_cancel_reason_menu" name="Cancel Reasons" parent="stock.menu_stock_config_settings" action="stock_picking_cancel_reason_action" sequence="999" />
+</odoo>

@@ -1,0 +1,1123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="homepage" inherit_id="website.homepage" name="Homepage Custom">
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <div id="wrap" class="oe_structure">
+                <section class="s_text_image o_colored_level o_cc o_cc1 pt32 pb0" data-snippet="s_text_image" data-name="Text - Image" style="background-color: rgba(255, 255, 255, 0.15);">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="pt16 o_colored_level col-lg-6 pb0">
+                                <h6>
+                                    <span class="o_small-fs"><font class="text-o-color-1">E S T . 1 9 5 2 · K A R A I K A L , TA M I L N A D U</font></span>
+                                </h6>
+                                <h1>
+                                    <strong>Sweets that taste like </strong><font class="text-o-color-1"><strong>home.</strong></font>
+                                </h1>
+                                <p>
+                                    Hand-made in small batches with pure cow ghee,
+                                    jaggery, and recipes passed down three generations.
+                                    From Mysore Pak to Murukku — the real thing, delivered
+                                    fresh.
+                                </p>
+                                <p>
+                                    <a class="btn btn-custom mb-2" href="#" style="border-style: solid; border-width: 0px;">Shop Now </a>
+                                    <a href="#" class="btn btn-custom mb-2" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0); border-radius: 0;">Explore Gift Boxes</a>
+                                </p>
+                                <div class="s_hr pb0 pt24" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="w-100 mx-auto"/>
+                                </div>
+                                <section class="s_embed_code pt32 pb0 text-start" data-snippet="s_embed_code" data-name="Embed Code">
+                                    <template class="s_embed_code_saved">
+                                        <div class="counter-section">
+                                            <div>
+                                                <div><h6 style="font-size: 26px;font-weight: 700;">73 yrs</h6></div>
+                                                <div><p>OF TRADITION</p></div>
+                                            </div>
+                                            <div>
+                                                <div><h6 style="font-size: 26px;font-weight: 700;">120+</h6></div>
+                                                <div><p>HANDMADE ITEMS</p></div>
+                                            </div>
+                                            <div>
+                                                <div><h6 style="font-size: 26px;font-weight: 700;">8</h6></div>
+                                                <div><p>STORES ACROSS TN</p></div>
+                                            </div>
+                                        </div>
+                                        <style>
+                                            .counter-section {
+                                            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; 
+                                            }
+                                            
+                                            @media screen and (max-width:767px) {
+                                            .counter-section {
+                                            grid-template-columns: repeat(1, 1fr); gap: 10px;
+                                            }
+                                            }
+                                        </style>
+                                    </template>
+                                    <div class="s_embed_code_embedded container o_not_editable">
+                                        <div class="counter-section">
+                                            <div>
+                                                <div><h6 style="font-size: 26px;font-weight: 700;">73 yrs</h6></div>
+                                                <div><p>OF TRADITION</p></div>
+                                            </div>
+                                            <div>
+                                                <div><h6 style="font-size: 26px;font-weight: 700;">120+</h6></div>
+                                                <div><p>HANDMADE ITEMS</p></div>
+                                            </div>
+                                            <div>
+                                                <div><h6 style="font-size: 26px;font-weight: 700;">8</h6></div>
+                                                <div><p>STORES ACROSS TN</p></div>
+                                            </div>
+                                        </div>
+                                        <style>
+                                            .counter-section {
+                                            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; 
+                                            }
+                                            
+                                            @media screen and (max-width:767px) {
+                                            .counter-section {
+                                            grid-template-columns: repeat(1, 1fr); gap: 10px;
+                                            }
+                                            }
+                                        </style>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col-lg-5 o_colored_level pt0 pb0 rounded o_cc o_cc1">
+                                <img src="/web/image/101779-24d0d44f/ChatGPT%20Image%20May%2019%2C%202026%2C%2002_41_35%20PM.webp" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="101777" data-original-src="/web/image/101777-20840194/ChatGPT%20Image%20May%2019%2C%202026%2C%2002_41_35%20PM.png" data-mimetype-before-conversion="image/png" data-resize-width="690" loading="lazy"/>
+                                <section class="s_embed_code pt0 pb0 text-start" data-snippet="s_embed_code" data-name="Embed Code">
+                                    <template class="s_embed_code_saved">
+                                        <div class="cus-card-style">
+                                            <div class="cus-avator">D</div>
+                                            <div class="cus-content">
+                                                <div><p>DIWALI PRE-ORDER</p></div>
+                                                <div><button>Festive boxes live now →</button></div>
+                                            </div>
+                                        </div>
+                                        <style>
+                                            .cus-card-style {
+                                                display: flex;
+                                                gap: 5px;
+                                                align-items: center;
+                                                box-shadow: -9px 6px 20px 0px #80808075;
+                                                padding: 14px;
+                                                width: fit-content;
+                                                margin-top: -45px;
+                                                margin-left: -35px;
+                                                background-color: white;
+                                                padding-right: 30px;
+                                            }
+                                            
+                                            .cus-card-style .cus-avator {
+                                                width: 50px;
+                                                height: 50px;
+                                                display: inline-flex;
+                                                align-items: center;
+                                                justify-content: center;
+                                            }
+                                            
+                                            .cus-card-style button {
+                                                border: 0;
+                                                background-color: transparent;
+                                                padding: 0;
+                                                margin: 0;
+                                                font-size: 14px;
+                                            }
+                                            
+                                            .cus-card-style .cus-content div p {
+                                                margin-bottom: 2px;font-size: 12px;
+                                                color: #9c9c9c;
+                                            }
+                                            
+                                            @media screen and (max-width:767px) {
+                                                .cus-card-style {
+                                                    margin-top: -25px;
+                                                    margin-left: -15px;
+                                                }
+                                                
+                                                .cus-card-style .cus-avator {
+                                                    width: 30px;
+                                                    height: 30px;
+                                                }
+                                            }
+                                        </style>
+                                    </template>
+                                    <div class="s_embed_code_embedded container o_not_editable">
+                                        <div class="cus-card-style">
+                                            <div class="cus-avator">D</div>
+                                            <div class="cus-content">
+                                                <div><p>DIWALI PRE-ORDER</p></div>
+                                                <div><button>Festive boxes live now →</button></div>
+                                            </div>
+                                        </div>
+                                        <style>
+                                            .cus-card-style {
+                                                display: flex;
+                                                gap: 5px;
+                                                align-items: center;
+                                                box-shadow: -9px 6px 20px 0px #80808075;
+                                                padding: 14px;
+                                                width: fit-content;
+                                                margin-top: -45px;
+                                                margin-left: -35px;
+                                                background-color: white;
+                                                padding-right: 30px;
+                                            }
+                                            
+                                            .cus-card-style .cus-avator {
+                                                width: 50px;
+                                                height: 50px;
+                                                display: inline-flex;
+                                                align-items: center;
+                                                justify-content: center;
+                                            }
+                                            
+                                            .cus-card-style button {
+                                                border: 0;
+                                                background-color: transparent;
+                                                padding: 0;
+                                                margin: 0;
+                                                font-size: 14px;
+                                            }
+                                            
+                                            .cus-card-style .cus-content div p {
+                                                margin-bottom: 2px;font-size: 12px;
+                                                color: #9c9c9c;
+                                            }
+                                            
+                                            @media screen and (max-width:767px) {
+                                                .cus-card-style {
+                                                    margin-top: -25px;
+                                                    margin-left: -15px;
+                                                }
+                                                
+                                                .cus-card-style .cus-avator {
+                                                    width: 30px;
+                                                    height: 30px;
+                                                }
+                                            }
+                                        </style>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_key_images o_colored_level pt32 pb32" data-snippet="s_key_images" data-name="Key Images">
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="o_colored_level col-lg-12 pb40">
+                                <p class="o_small">
+                                    <font style="color: rgb(198, 24, 40);">S H O P&amp;nbsp; B Y&amp;nbsp; C AT E G O R Y</font>
+                                </p>
+                                <h2>
+                                    <span class="h2-fs"><strong>What will you taste today?</strong></span>
+                                </h2>
+                                <section class="s_embed_code pt0 pb0 text-center" data-snippet="s_embed_code" data-name="Embed Code">
+                                    <template class="s_embed_code_saved">
+                                        <div class="cus-button-style">
+                                            <a href="#">View all products →</a>
+                                        </div>
+                                        <style>
+                                            .cus-button-style a {
+                                                font-size: 16px;
+                                                color: #000;
+                                                text-decoration: underline;
+                                                display: flex;
+                                                justify-content: end;
+                                                margin-top: -28px;
+                                            }
+                                            
+                                            main &gt; div &gt; section:nth-child(1) &gt; .container &gt; div {
+                                                border: 1px solid var(--o-cc1-btn-secondary);
+                                                padding: clamp(1.25rem, 1.1058rem + 0.641vw, 1.875rem);
+                                                border-radius: 15px;
+                                                justify-content: space-between;
+                                            }
+                                            
+                                            @media screen and (max-width: 767px) {
+                                                .cus-button-style a {
+                                                    margin-top: 5px !important;
+                                                    justify-content: start !important;
+                                                }
+                                            }
+                                        </style>
+                                    </template>
+                                    <div class="s_embed_code_embedded container o_not_editable">
+                                        <div class="cus-button-style">
+                                            <a href="#">View all products →</a>
+                                        </div>
+                                        <style>
+                                            .cus-button-style a {
+                                                font-size: 16px;
+                                                color: #000;
+                                                text-decoration: underline;
+                                                display: flex;
+                                                justify-content: end;
+                                                margin-top: -28px;
+                                            }
+                                            
+                                            main &gt; div &gt; section:nth-child(1) &gt; .container &gt; div {
+                                                border: 1px solid var(--o-cc1-btn-secondary);
+                                                padding: clamp(1.25rem, 1.1058rem + 0.641vw, 1.875rem);
+                                                border-radius: 15px;
+                                                justify-content: space-between;
+                                            }
+                                            
+                                            @media screen and (max-width: 767px) {
+                                                .cus-button-style a {
+                                                    margin-top: 5px !important;
+                                                    justify-content: start !important;
+                                                }
+                                            }
+                                        </style>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col-6 o_colored_level pt0 col-lg-2">
+                                <p><img src="/web/image/101902-ca6a662e/cat01.webp" alt="" class="img img-fluid o_we_custom_image" style="width: 100% !important;" data-mimetype="image/webp" data-original-id="101890" data-original-src="/web/image/101890-dd823224/cat01.webp" data-mimetype-before-conversion="image/webp" data-resize-width="NaN" loading="lazy"/></p>
+                                <h4>
+                                    <span class="base-fs"><strong>Sweets</strong></span>
+                                </h4>
+                                <p class="o_small">
+                                    <span class="o_small-fs">120+ items</span>
+                                </p>
+                            </div>
+                            <div class="col-6 o_colored_level col-lg-2">
+                                <p><img src="/web/image/101903-42c4a180/cat02.webp" alt="" class="img img-fluid o_we_custom_image" style="width: 100% !important;" data-mimetype="image/webp" data-original-id="101892" data-original-src="/web/image/101892-28617581/cat02.webp" data-mimetype-before-conversion="image/webp" data-resize-width="NaN" loading="lazy"/></p>
+                                <h4><span class="base-fs"><strong>Savouries</strong></span><br/></h4>
+                                <p class="o_small"><span class="o_small-fs">40+ items</span></p>
+                            </div>
+                            <div class="col-6 o_colored_level col-lg-2">
+                                <p><img src="/web/image/101904-b4384d21/cat05.webp" alt="" class="img img-fluid o_we_custom_image" style="width: 100% !important;" data-mimetype="image/webp" data-original-id="101894" data-original-src="/web/image/101894-3358081b/cat05.webp" data-mimetype-before-conversion="image/webp" data-resize-width="NaN" loading="lazy"/></p>
+                                <h4><span class="base-fs"><strong>Bakery</strong></span><br/></h4>
+                                <p class="o_small"><span class="o_small-fs">30+ items</span></p>
+                            </div>
+                            <div class="col-6 o_colored_level col-lg-2">
+                                <p><img src="/web/image/101905-4915d9c4/cat06.webp" alt="" class="img img-fluid o_we_custom_image" style="width: 100% !important;" data-mimetype="image/webp" data-original-id="101896" data-original-src="/web/image/101896-e33b1e57/cat06.webp" data-mimetype-before-conversion="image/webp" data-resize-width="NaN" loading="lazy"/></p>
+                                <h4><span class="base-fs"><strong>Cakes</strong></span><br/></h4>
+                                <p class="o_small"><span class="o_small-fs">25+ items</span></p>
+                            </div>
+                            <div class="col-6 o_colored_level col-lg-2">
+                                <p><img src="/web/image/101906-2cc8302d/cat04.webp" alt="" class="img img-fluid o_we_custom_image" style="width: 100% !important;" data-mimetype="image/webp" data-original-id="101898" data-original-src="/web/image/101898-cae157dd/cat04.webp" data-mimetype-before-conversion="image/webp" data-resize-width="NaN" loading="lazy"/></p>
+                                <h4><span class="base-fs"><strong>Gifts</strong></span><br/></h4>
+                                <p class="o_small"><span class="o_small-fs">18 boxes</span></p>
+                            </div>
+                            <div class="col-6 o_colored_level col-lg-2">
+                                <p><img src="/web/image/101907-cac146bd/cat03.webp" alt="" class="img img-fluid o_we_custom_image" style="width: 100% !important;" data-mimetype="image/webp" data-original-id="101900" data-original-src="/web/image/101900-70ad4c15/cat03.webp" data-mimetype-before-conversion="image/webp" data-resize-width="NaN" loading="lazy"/></p>
+                                <h4><span class="base-fs"><strong>Festive</strong></span><br/></h4>
+                                <p class="o_small"><span class="o_small-fs">Seasonal</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="s_hr o_colored_level pt0 pb16" data-snippet="s_hr" data-name="Separator">
+                    <hr class="w-100 mx-auto"/>
+                </div>
+                <section data-snippet="s_dynamic_snippet_products" class="s_dynamic_snippet_products s_dynamic s_dynamic_empty pb32 o_colored_level s_product_product_borderless_1 pt0 o_dynamic_snippet_empty" data-custom-template-data="{}" data-name="Products" data-product-category-id="all" data-show-variants="true" data-number-of-records="16" data-filter-id="8" data-template-key="website_sale.dynamic_filter_template_product_product_borderless_1" data-carousel-interval="5000" data-product-tag-ids="[]">
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <section class="s_dynamic_snippet_title oe_unremovable oe_unmovable d-flex flex-column flex-md-row mb-lg-0 pb-md-0 o_colored_level pb48 justify-content-between pt24">
+                                <div>
+                                    <p class="o_small">
+                                        <font style="color: rgb(198, 24, 40);">B E S T&amp;nbsp; S E L L E R S</font><br/>
+                                    </p>
+                                    <h2>
+                                        <span class="h2-fs"><strong>Always in our kitchen.</strong></span><br/>
+                                    </h2>
+                                </div>
+                                <div>
+                                    <a class="s_dynamic_snippet_main_page_url btn btn-custom text-o-color-5" href="/shop" data-bs-original-title="See All" style="border-style: solid; border-width: 0px;padding: 5px 0 0;">Shop be<font class="text-o-color-5"></font>stsellers&amp;nbsp; <i class="fa fa-long-arrow-right ms-2"/></a>
+                                </div>
+                            </section>
+                            <section class="s_dynamic_snippet_content oe_unremovable oe_unmovable o_not_editable col o_colored_level">
+                                <div class="css_non_editable_mode_hidden">
+                                    <div class="missing_option_warning alert alert-info fade show d-none d-print-none rounded-0 o_default_snippet_text">
+                                        Your Dynamic Snippet will be displayed here... This message is displayed because you did not provide both a filter and a template to use.<br/>
+                                    </div>
+                                </div>
+                                <div class="dynamic_snippet_template"/>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_embed_code o_colored_level pt0 pb0 text-center" data-snippet="s_embed_code" data-name="Embed Code">
+                    <template class="s_embed_code_saved">
+                        <style>
+                            .o_carousel_product_card {
+                                border: 1px solid #dcdcdc !important;
+                                border-radius: 0;
+                            }
+                            
+                            .o_carousel_product_card .o_carousel_product_img_link * {
+                                border-radius: 0 !important;
+                            }
+                            
+                            .o_header_standard.o_header_affixed {
+                              box-shadow: 0 8px 10px -4px #0003;
+                            }
+                        </style>
+                    </template>
+                    <div class="s_embed_code_embedded container o_not_editable">
+                        <style>
+                            .o_carousel_product_card {
+                                border: 1px solid #dcdcdc !important;
+                                border-radius: 0;
+                            }
+                            
+                            .o_carousel_product_card .o_carousel_product_img_link * {
+                                border-radius: 0 !important;
+                            }
+                            
+                            .o_header_standard.o_header_affixed {
+                              box-shadow: 0 8px 10px -4px #0003;
+                            }
+                        </style>
+                    </div>
+                </section>
+                <section class="s_text_image pt64 pb64 o_colored_level d-none o_snippet_mobile_invisible d-lg-block" data-snippet="s_image_text" data-name="Image - Text" data-invisible="1">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="pt16 pb16 col-lg-5 o_colored_level" placeholder="Type &quot;/&quot; for commands">
+                                <img src="/web/image/101883-ceb5fa3d/ChatGPT%20%281%29.webp" alt="" class="img img-fluid o_we_custom_image" data-mimetype="image/webp" data-original-id="101871" data-original-src="/web/image/101871-0a69ba9f/ChatGPT%20%281%29.webp" data-mimetype-before-conversion="image/webp" data-resize-width="NaN" loading="lazy"/>
+                            </div>
+                            <div class="col-lg-5 offset-lg-1 pt16 pb16 o_colored_level">
+                                <p class="o_small">
+                                    <font style="color: rgb(198, 24, 40);">O U R&amp;nbsp; S T O R Y</font>
+                                </p>
+                                <h2>
+                                    <strong>Three generations, one copper kadai.</strong>
+                                </h2>
+                                <p>
+                                    It started with a single shop opposite the Karaikal Ammaiyar temple
+                                    and a small copper kadai that Grandfather Raghavan refused to
+                                    retire. Seventy-three years later, we still cook in copper, still use the
+                                    same jaggery supplier from Kumbakonam, and still close for an hour
+                                    every afternoon — because some things you don't rush.&amp;nbsp;
+                                </p>
+                                <p>
+                                    Today, the third generation runs the kitchens. The recipes haven't
+                                    changed. Just the number of people we get to feed.
+                                </p>
+                                <p><br/></p>
+                                <p><a href="#" class="btn btn-custom" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0);border-radius: 0;">Read our story</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image o_colored_level pb0 pt0" data-snippet="s_text_image" data-name="Text - Image">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-5 pt16 o_colored_level pb4">
+                                <p class="o_small">
+                                    <font style="color: rgb(198, 24, 40);">D I WA L I · L I M I T E D E D I T I O N&amp;nbsp;</font><br/>
+                                </p>
+                                <h2>
+                                    <strong>The Karaikal Hamper — twelve of our most loved.</strong>
+                                </h2>
+                                <p>
+                                    Hand-packed in a reusable brass-finish tin. Ships across India
+                                    in cold-chain carriers.
+                                </p>
+                                <p><br/></p>
+                                <p>
+                                    <a href="#" class="btn btn-custom mb-2" style="border-width: 0px; border-style: solid;"><strong>Pre-order ₹1,899</strong></a>
+                                    <a href="#" class="btn btn-custom mb-2" style="border-width: 0px; border-style: solid;">What's inside?</a>
+                                </p>
+                            </div>
+                            <div class="offset-lg-1 pt16 pb16 col-lg-5 o_colored_level">
+                                <img src="/web/image/101882-38cd6a21/ChatGPT%20%282%29.webp" alt="" class="img img-fluid mx-auto rounded o_we_custom_image" data-mimetype="image/webp" data-original-id="101873" data-original-src="/web/image/101873-99147c27/ChatGPT%20%282%29.webp" data-mimetype-before-conversion="image/webp" data-resize-width="NaN" loading="lazy"/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_company_team_detail o_cc o_cc1 o_colored_level pt32 pb0" data-snippet="s_company_team_detail" data-name="Team Detail">
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 o_colored_level">
+                                <p class="o_small">
+                                    <font style="color: rgb(198, 24, 40);">F R O M&amp;nbsp; O U R&amp;nbsp; R E G U L A R S</font>
+                                </p>
+                                <h2>
+                                    <strong>A word from the table.</strong>
+                                </h2>
+                                <section class="s_embed_code text-center pb0 pt0" data-snippet="s_embed_code" data-name="Embed Code">
+                                    <template class="s_embed_code_saved">
+                                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+                                        <style>
+                                            .testimonial-section{
+                                              max-width:1280px;
+                                              margin:auto;
+                                              padding:20px 0;
+                                            }
+                                            
+                                            .testimonialSwiper{
+                                              overflow:hidden;
+                                            }
+                                            
+                                            .testimonial-card{
+                                              border:1px solid #dcdcdc;
+                                              padding:28px;
+                                              min-height:255px;
+                                              display:flex;
+                                              flex-direction:column;
+                                              justify-content:space-between;
+                                              height:100%;
+                                            }
+                                            
+                                            .testimonial-card &gt; div &gt; * {
+                                              text-align: start;
+                                            }
+                                            
+                                            .stars{
+                                              color:#c89a2b;
+                                              font-size:18px;
+                                              letter-spacing:2px;
+                                              margin-bottom:10px;
+                                            }
+                                            
+                                            .testimonial-text{
+                                              font-size:15px;
+                                              line-height:1.7;
+                                              color:#2b2b2b;
+                                            }
+                                            
+                                            .testimonial-footer{
+                                              border-top:1px solid #d6d6d6;
+                                              padding-top:18px;
+                                              margin-top:30px;
+                                              display:flex;
+                                              align-items:center;
+                                              justify-content:space-between;
+                                            }
+                                            
+                                            .name{
+                                              font-size:15px;
+                                              font-weight:700;
+                                              color:#111;
+                                            }
+                                            
+                                            .location{
+                                              font-size:14px;
+                                              color:#5c4a42;
+                                            }
+                                            
+                                            /* GRAB CURSOR */
+                                            .swiper{
+                                              cursor:grab;
+                                            }
+                                            
+                                            .swiper:active{
+                                              cursor:grabbing;
+                                            }
+                                            
+                                            /* PAGINATION */
+                                            .swiper-pagination{
+                                              position:relative;
+                                              margin-top:30px;
+                                            }
+                                            
+                                            .swiper-pagination-bullet{
+                                              width:10px;
+                                              height:10px;
+                                              background:#999;
+                                              opacity:1;
+                                            }
+                                            
+                                            .swiper-pagination-bullet-active{
+                                              background:#111;
+                                            }
+                                        </style>
+                                        <div class="testimonial-section">
+                                            <div class="swiper testimonialSwiper">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide">
+                                                        <div class="testimonial-card">
+                                                            <div>
+                                                                <div class="stars">★★★★★</div>
+                                                                <div class="testimonial-text">
+                                                                    "The Mysore Pak melts before you finish a sentence. My grandmother's seal of approval — and she's 91."
+                                                                </div>
+                                                            </div>
+                                                            <div class="testimonial-footer">
+                                                                <div class="name">Lakshmi Narayanan</div>
+                                                                <div class="location">Mylapore</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="testimonial-card">
+                                                            <div>
+                                                                <div class="stars">★★★★★</div>
+                                                                <div class="testimonial-text">
+                                                                    "Ordered the Diwali hamper for my team in Bangalore. Gone in a day. The thattai especially — crisp, not greasy."
+                                                                </div>
+                                                            </div>
+                                                            <div class="testimonial-footer">
+                                                                <div class="name">Arjun Varadarajan</div>
+                                                                <div class="location">Bangalore</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="testimonial-card">
+                                                            <div>
+                                                                <div class="stars">★★★★★</div>
+                                                                <div class="testimonial-text">
+                                                                    "I grew up on their murukku. Living in Boston now, they ship it in perfect condition. Tastes like 1998."
+                                                                </div>
+                                                            </div>
+                                                            <div class="testimonial-footer">
+                                                                <div class="name">Priya Srinivasan</div>
+                                                                <div class="location">Boston, US</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="testimonial-card">
+                                                            <div>
+                                                                <div class="stars">★★★★★</div>
+                                                                <div class="testimonial-text">
+                                                                    "Best adhirasam I've had outside my hometown. Soft inside, perfectly fried outside."
+                                                                </div>
+                                                            </div>
+                                                            <div class="testimonial-footer">
+                                                                <div class="name">Ramesh Kumar</div>
+                                                                <div class="location">Coimbatore</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="testimonial-card">
+                                                            <div>
+                                                                <div class="stars">★★★★★</div>
+                                                                <div class="testimonial-text">
+                                                                    "Authentic taste and amazing packaging. Reached Hyderabad fresh and crisp."
+                                                                </div>
+                                                            </div>
+                                                            <div class="testimonial-footer">
+                                                                <div class="name">Sathya Raj</div>
+                                                                <div class="location">Hyderabad</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style=" display: none; " class="swiper-pagination"/>
+                                            </div>
+                                        </div>
+                                        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"/>
+                                        <script>
+                                            new Swiper(".testimonialSwiper", {
+                                              slidesPerView: 3,
+                                              spaceBetween: 24,
+                                              loop: true,
+                                              grabCursor: true,
+                                              pagination: {
+                                                el: ".swiper-pagination",
+                                                clickable: true,
+                                              },
+                                              autoplay: {
+                                                delay: 3500,
+                                                disableOnInteraction: false,
+                                              },
+                                              breakpoints: {
+                                                0: {
+                                                  slidesPerView: 1,
+                                                },
+                                                768: {
+                                                  slidesPerView: 2,
+                                                },
+                                                1024: {
+                                                  slidesPerView: 3,
+                                                }
+                                              }
+                                            });
+                                        </script>
+                                    </template>
+                                    <div class="s_embed_code_embedded container o_not_editable">
+                                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+                                        <style>
+                                            .testimonial-section{
+                                              max-width:1280px;
+                                              margin:auto;
+                                              padding:20px 0;
+                                            }
+                                            
+                                            .testimonialSwiper{
+                                              overflow:hidden;
+                                            }
+                                            
+                                            .testimonial-card{
+                                              border:1px solid #dcdcdc;
+                                              padding:28px;
+                                              min-height:255px;
+                                              display:flex;
+                                              flex-direction:column;
+                                              justify-content:space-between;
+                                              height:100%;
+                                            }
+                                            
+                                            .testimonial-card &gt; div &gt; * {
+                                              text-align: start;
+                                            }
+                                            
+                                            .stars{
+                                              color:#c89a2b;
+                                              font-size:18px;
+                                              letter-spacing:2px;
+                                              margin-bottom:10px;
+                                            }
+                                            
+                                            .testimonial-text{
+                                              font-size:15px;
+                                              line-height:1.7;
+                                              color:#2b2b2b;
+                                            }
+                                            
+                                            .testimonial-footer{
+                                              border-top:1px solid #d6d6d6;
+                                              padding-top:18px;
+                                              margin-top:30px;
+                                              display:flex;
+                                              align-items:center;
+                                              justify-content:space-between;
+                                            }
+                                            
+                                            .name{
+                                              font-size:15px;
+                                              font-weight:700;
+                                              color:#111;
+                                            }
+                                            
+                                            .location{
+                                              font-size:14px;
+                                              color:#5c4a42;
+                                            }
+                                            
+                                            /* GRAB CURSOR */
+                                            .swiper{
+                                              cursor:grab;
+                                            }
+                                            
+                                            .swiper:active{
+                                              cursor:grabbing;
+                                            }
+                                            
+                                            /* PAGINATION */
+                                            .swiper-pagination{
+                                              position:relative;
+                                              margin-top:30px;
+                                            }
+                                            
+                                            .swiper-pagination-bullet{
+                                              width:10px;
+                                              height:10px;
+                                              background:#999;
+                                              opacity:1;
+                                            }
+                                            
+                                            .swiper-pagination-bullet-active{
+                                              background:#111;
+                                            }
+                                        </style>
+                                        <div class="testimonial-section">
+                                            <div class="swiper testimonialSwiper">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide">
+                                                        <div class="testimonial-card">
+                                                            <div>
+                                                                <div class="stars">★★★★★</div>
+                                                                <div class="testimonial-text">
+                                                                    "The Mysore Pak melts before you finish a sentence. My grandmother's seal of approval — and she's 91."
+                                                                </div>
+                                                            </div>
+                                                            <div class="testimonial-footer">
+                                                                <div class="name">Lakshmi Narayanan</div>
+                                                                <div class="location">Mylapore</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="testimonial-card">
+                                                            <div>
+                                                                <div class="stars">★★★★★</div>
+                                                                <div class="testimonial-text">
+                                                                    "Ordered the Diwali hamper for my team in Bangalore. Gone in a day. The thattai especially — crisp, not greasy."
+                                                                </div>
+                                                            </div>
+                                                            <div class="testimonial-footer">
+                                                                <div class="name">Arjun Varadarajan</div>
+                                                                <div class="location">Bangalore</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="testimonial-card">
+                                                            <div>
+                                                                <div class="stars">★★★★★</div>
+                                                                <div class="testimonial-text">
+                                                                    "I grew up on their murukku. Living in Boston now, they ship it in perfect condition. Tastes like 1998."
+                                                                </div>
+                                                            </div>
+                                                            <div class="testimonial-footer">
+                                                                <div class="name">Priya Srinivasan</div>
+                                                                <div class="location">Boston, US</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="testimonial-card">
+                                                            <div>
+                                                                <div class="stars">★★★★★</div>
+                                                                <div class="testimonial-text">
+                                                                    "Best adhirasam I've had outside my hometown. Soft inside, perfectly fried outside."
+                                                                </div>
+                                                            </div>
+                                                            <div class="testimonial-footer">
+                                                                <div class="name">Ramesh Kumar</div>
+                                                                <div class="location">Coimbatore</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="testimonial-card">
+                                                            <div>
+                                                                <div class="stars">★★★★★</div>
+                                                                <div class="testimonial-text">
+                                                                    "Authentic taste and amazing packaging. Reached Hyderabad fresh and crisp."
+                                                                </div>
+                                                            </div>
+                                                            <div class="testimonial-footer">
+                                                                <div class="name">Sathya Raj</div>
+                                                                <div class="location">Hyderabad</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style=" display: none; " class="swiper-pagination"/>
+                                            </div>
+                                        </div>
+                                        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"/>
+                                        <script>
+                                            new Swiper(".testimonialSwiper", {
+                                              slidesPerView: 3,
+                                              spaceBetween: 24,
+                                              loop: true,
+                                              grabCursor: true,
+                                              pagination: {
+                                                el: ".swiper-pagination",
+                                                clickable: true,
+                                              },
+                                              autoplay: {
+                                                delay: 3500,
+                                                disableOnInteraction: false,
+                                              },
+                                              breakpoints: {
+                                                0: {
+                                                  slidesPerView: 1,
+                                                },
+                                                768: {
+                                                  slidesPerView: 2,
+                                                },
+                                                1024: {
+                                                  slidesPerView: 3,
+                                                }
+                                              }
+                                            });
+                                        </script>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_key_images o_colored_level pt0 pb0" data-snippet="s_key_images" data-name="Key Images">
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="o_colored_level col-lg-12 pb0">
+                                <p class="o_small">
+                                    <font style="color: rgb(198, 24, 40);">V I S I T&amp;nbsp; U S</font><br/>
+                                </p>
+                                <h2>
+                                    <span class="h2-fs"><strong>Eight stores, one kitchen philosophy.</strong></span><br/>
+                                </h2>
+                                <section class="s_embed_code pt0 pb0 text-center" data-snippet="s_embed_code" data-name="Embed Code">
+                                    <template class="s_embed_code_saved">
+                                        <div class="cus-button-style">
+                                            <a href="#">View all products →</a>
+                                        </div>
+                                        <style>
+                                            .cus-button-style a {
+                                                font-size: 16px;
+                                                color: #000;
+                                                text-decoration: underline;
+                                                display: flex;
+                                                justify-content: end;
+                                                margin-top: -28px;
+                                            }
+                                        </style>
+                                    </template>
+                                    <div class="s_embed_code_embedded container o_not_editable">
+                                        <div class="cus-button-style">
+                                            <a href="#">View all products →</a>
+                                        </div>
+                                        <style>
+                                            .cus-button-style a {
+                                                font-size: 16px;
+                                                color: #000;
+                                                text-decoration: underline;
+                                                display: flex;
+                                                justify-content: end;
+                                                margin-top: -28px;
+                                            }
+                                        </style>
+                                    </div>
+                                </section>
+                                <section class="s_embed_code o_colored_level pb0 pt0 text-center" data-snippet="s_embed_code" data-name="Embed Code">
+                                    <template class="s_embed_code_saved">
+                                        <style>
+                                            .location-section{
+                                              padding:40px 0px;
+                                            }
+                                            
+                                            .location-container{
+                                              max-width:1280px;
+                                              margin:0 auto;
+                                              display:grid;
+                                              grid-template-columns:repeat(4,1fr);
+                                              gap:20px;
+                                            }
+                                            
+                                            .location-card{
+                                              background:#fff;
+                                              border:1px solid #e3e3e3;
+                                              padding:26px 24px;
+                                              min-height:188px;
+                                              transition:0.3s ease;
+                                              text-align: start;
+                                            }
+                                            
+                                            .location-card:hover{
+                                              transform:translateY(-3px);
+                                              box-shadow:0 10px 25px rgba(0,0,0,0.06);
+                                            }
+                                            
+                                            .location-label{
+                                              font-size:14px;
+                                              letter-spacing:2px;
+                                              text-transform:uppercase;
+                                              color:#e11d2e;
+                                              margin-bottom:18px;
+                                            }
+                                            
+                                            .location-title{
+                                              font-size:20px;
+                                              font-weight:700;
+                                              line-height:1.1;
+                                              margin-bottom:18px;
+                                              color:#241818;
+                                            }
+                                            
+                                            .location-address{
+                                              font-size:14px;
+                                              color:#5d5d5d;
+                                              margin-bottom:20px;
+                                            }
+                                            
+                                            .location-divider{
+                                              width:100%;
+                                              height:1px;
+                                              background:#e3e3e3;
+                                              margin-bottom:18px;
+                                            }
+                                            
+                                            .location-time{
+                                              font-size:14px;
+                                              color:#2f2f2f;
+                                            }
+                                            
+                                            @media (max-width: 992px){
+                                              .location-container{
+                                                grid-template-columns:repeat(2,1fr);
+                                              }
+                                            }
+                                            
+                                            @media (max-width: 576px){
+                                              .location-container{
+                                                grid-template-columns:1fr;
+                                              }
+                                              
+                                              .location-card{
+                                                padding:22px 20px;
+                                              }
+                                              
+                                              .location-address{
+                                                font-size:14px;
+                                              }
+                                              
+                                              .location-time{
+                                                font-size:14px;
+                                              }
+                                            }
+                                        </style>
+                                        <div class="location-section">
+                                            <div class="location-container">
+                                                <div class="location-card">
+                                                    <div class="location-label">FLAGSHIP · SINCE 1952</div>
+                                                    <h2 class="location-title">Karaikal</h2>
+                                                    <div class="location-address">Big Street, opp. temple</div>
+                                                    <div class="location-divider"/>
+                                                    <div class="location-time">7am – 10pm</div>
+                                                </div>
+                                                <div class="location-card">
+                                                    <div class="location-label">MISSION STREET</div>
+                                                    <h2 class="location-title">Pondicherry</h2>
+                                                    <div class="location-address">Near Bharathi Park</div>
+                                                    <div class="location-divider"/>
+                                                    <div class="location-time">7am – 10pm</div>
+                                                </div>
+                                                <div class="location-card">
+                                                    <div class="location-label">T NAGAR</div>
+                                                    <h2 class="location-title">Chennai</h2>
+                                                    <div class="location-address">Ranganathan Street</div>
+                                                    <div class="location-divider"/>
+                                                    <div class="location-time">8am – 10pm</div>
+                                                </div>
+                                                <div class="location-card">
+                                                    <div class="location-label">MAIN BAZAAR</div>
+                                                    <h2 class="location-title">Nagapattinam</h2>
+                                                    <div class="location-address">Near bus stand</div>
+                                                    <div class="location-divider"/>
+                                                    <div class="location-time">7am – 9pm</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <div class="s_embed_code_embedded container o_not_editable">
+                                        <style>
+                                            .location-section{
+                                              padding:40px 0px;
+                                            }
+                                            
+                                            .location-container{
+                                              max-width:1280px;
+                                              margin:0 auto;
+                                              display:grid;
+                                              grid-template-columns:repeat(4,1fr);
+                                              gap:20px;
+                                            }
+                                            
+                                            .location-card{
+                                              background:#fff;
+                                              border:1px solid #e3e3e3;
+                                              padding:26px 24px;
+                                              min-height:188px;
+                                              transition:0.3s ease;
+                                              text-align: start;
+                                            }
+                                            
+                                            .location-card:hover{
+                                              transform:translateY(-3px);
+                                              box-shadow:0 10px 25px rgba(0,0,0,0.06);
+                                            }
+                                            
+                                            .location-label{
+                                              font-size:14px;
+                                              letter-spacing:2px;
+                                              text-transform:uppercase;
+                                              color:#e11d2e;
+                                              margin-bottom:18px;
+                                            }
+                                            
+                                            .location-title{
+                                              font-size:20px;
+                                              font-weight:700;
+                                              line-height:1.1;
+                                              margin-bottom:18px;
+                                              color:#241818;
+                                            }
+                                            
+                                            .location-address{
+                                              font-size:14px;
+                                              color:#5d5d5d;
+                                              margin-bottom:20px;
+                                            }
+                                            
+                                            .location-divider{
+                                              width:100%;
+                                              height:1px;
+                                              background:#e3e3e3;
+                                              margin-bottom:18px;
+                                            }
+                                            
+                                            .location-time{
+                                              font-size:14px;
+                                              color:#2f2f2f;
+                                            }
+                                            
+                                            @media (max-width: 992px){
+                                              .location-container{
+                                                grid-template-columns:repeat(2,1fr);
+                                              }
+                                            }
+                                            
+                                            @media (max-width: 576px){
+                                              .location-container{
+                                                grid-template-columns:1fr;
+                                              }
+                                              
+                                              .location-card{
+                                                padding:22px 20px;
+                                              }
+                                              
+                                              .location-address{
+                                                font-size:14px;
+                                              }
+                                              
+                                              .location-time{
+                                                font-size:14px;
+                                              }
+                                            }
+                                        </style>
+                                        <div class="location-section">
+                                            <div class="location-container">
+                                                <div class="location-card">
+                                                    <div class="location-label">FLAGSHIP · SINCE 1952</div>
+                                                    <h2 class="location-title">Karaikal</h2>
+                                                    <div class="location-address">Big Street, opp. temple</div>
+                                                    <div class="location-divider"/>
+                                                    <div class="location-time">7am – 10pm</div>
+                                                </div>
+                                                <div class="location-card">
+                                                    <div class="location-label">MISSION STREET</div>
+                                                    <h2 class="location-title">Pondicherry</h2>
+                                                    <div class="location-address">Near Bharathi Park</div>
+                                                    <div class="location-divider"/>
+                                                    <div class="location-time">7am – 10pm</div>
+                                                </div>
+                                                <div class="location-card">
+                                                    <div class="location-label">T NAGAR</div>
+                                                    <h2 class="location-title">Chennai</h2>
+                                                    <div class="location-address">Ranganathan Street</div>
+                                                    <div class="location-divider"/>
+                                                    <div class="location-time">8am – 10pm</div>
+                                                </div>
+                                                <div class="location-card">
+                                                    <div class="location-label">MAIN BAZAAR</div>
+                                                    <h2 class="location-title">Nagapattinam</h2>
+                                                    <div class="location-address">Near bus stand</div>
+                                                    <div class="location-divider"/>
+                                                    <div class="location-time">7am – 9pm</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+</odoo>

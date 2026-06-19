@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+        id="action_batch_transfer_report"
+                string="Batch Transfer Report"
+                model="stock.picking.batch"
+                report_type="qweb-pdf"
+                file="oi_karaikal_batch_report.batch_transfer_template"
+                name="oi_karaikal_batch_report.batch_transfer_template"
+        />
+        <record id="batch_transfer_report" model="ir.actions.report">
+            <field name="name">Batch Transfer Report</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">oi_karaikal_batch_report.batch_transfer_template</field>
+            <field name="binding_model_id" ref="stock_picking_batch.model_stock_picking_batch"/>
+        </record> 
+        
+    </data>
+</odoo>

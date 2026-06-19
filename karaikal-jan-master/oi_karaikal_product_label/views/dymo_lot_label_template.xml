@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_lot_dymo_label" model="report.paperformat">
+            <field name="name">Lot Dymo Labels</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">25</field>
+            <field name="page_width">98</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="disable_shrinking" eval="True"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">96</field>
+        </record>
+
+        <record id="action_report_dymo_lot_label" model="ir.actions.report">
+            <field name="name">Dymo (PDF)</field>
+            <field name="model">stock.lot</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">oi_karaikal_product_label.lot_report_label_main_template</field>
+            <field name="report_file">oi_karaikal_product_label.lot_report_label_main_template</field>
+            <field name="paperformat_id" ref="oi_karaikal_product_label.paperformat_lot_dymo_label"/>
+            <field name="print_report_name">'Lot-Serial - %s' % object.name</field>
+            <field name="binding_model_id" ref="stock.model_stock_lot"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_dymo_lot_label_1" model="ir.actions.report">
+            <field name="name">Lot Label</field>
+            <field name="model">stock.lot</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">oi_karaikal_product_label.lot_report_label_main_template_1</field>
+            <field name="report_file">oi_karaikal_product_label.lot_report_label_main_template_1</field>
+            <field name="paperformat_id" ref="oi_karaikal_product_label.paperformat_lot_dymo_label"/>
+            <field name="print_report_name">'Lot-Serial - %s' % object.name</field>
+            <field name="binding_model_id" ref="stock.model_stock_lot"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

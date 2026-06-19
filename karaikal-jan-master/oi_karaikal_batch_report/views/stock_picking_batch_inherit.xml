@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="stock_picking_batch_form_view_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.batch.form.view.inherit</field>
+            <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+            <field name="model">stock.picking.batch</field>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='page_operations']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                        <page string="Opearations">
+                            <field name="operation_batch_ids" mode="list" readonly="True">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="transfer_id"/>
+                                    <field name="qty"/>
+                                    <field name="demand"/>
+                                    <field name="picked"/>
+                                    <field name="unit_of_measure"/>
+                                </list>
+                            </field>
+                        </page>
+                </xpath>
+            </field>
+        </record>
+</odoo>

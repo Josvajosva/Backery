@@ -1,0 +1,14 @@
+<odoo>
+    <record id="view_stock_scrap_list_inherit" model="ir.ui.view">
+        <field name="name">stock.scrap.list.inherit.sales.price.total</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='scrap_qty']" position="after">
+                <field name="sales_price_total"  sum="Total sale_price" readonly="1"/>
+                <field name="cost_price_total" sum="Total cost_price" readonly="1"/>
+                <field name="xml_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

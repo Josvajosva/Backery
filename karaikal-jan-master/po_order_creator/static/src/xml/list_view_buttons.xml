@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- Add Scan button next to New button (Purchase Order list only) -->
+    <t t-name="po_order_creator.ListView" t-inherit="web.ListView" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o_list_button_add')]" position="after">
+            <button t-if="isPurchaseOrderList"
+                    type="button"
+                    class="btn btn-primary ms-1 o_po_scan_list_btn"
+                    title="Scan QR (PO|Invoice)"
+                    t-on-click="onPoCustomListButtonClick">
+                Scan Purchase Invoice
+            </button>
+        </xpath>
+    </t>
+</templates>

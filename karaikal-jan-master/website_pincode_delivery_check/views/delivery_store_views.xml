@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Delivery Store Views -->
+    <record id="view_delivery_store_list" model="ir.ui.view">
+        <field name="name">delivery.store.list</field>
+        <field name="model">delivery.store</field>
+        <field name="arch" type="xml">
+            <list string="Stores">
+                <field name="name"/>
+                <field name="company_id" options="{'no_create': True}"/>
+                <field name="main_pincode"/>
+                <field name="state_id"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_delivery_store_form" model="ir.ui.view">
+        <field name="name">delivery.store.form</field>
+        <field name="model">delivery.store</field>
+        <field name="arch" type="xml">
+            <form string="Store">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Chennai Store"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <label for="main_pincode"/>
+                            <div class="o_row">
+                                <field name="main_pincode" placeholder="e.g. 600001"/>
+                                <button name="action_fetch_coordinates" type="object" string="Fetch Coordinates" class="btn-link" icon="fa-map-marker"/>
+                            </div>
+                            <field name="state_id" placeholder="Select State"/>
+                            <field name="company_id" options="{'no_create': True}"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group string="Location Settings">
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                            <field name="delivery_radius"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="map_html" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Deliverable Pincodes" name="deliverable_pincodes">
+                            <field name="deliverable_pincode_ids">
+                                <list editable="bottom">
+                                    <field name="pincode" placeholder="e.g. 600002"/>
+                                    <field name="state_id"/>
+                                    <field name="active" widget="boolean_toggle"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Delivery Store -->
+    <record id="action_delivery_store" model="ir.actions.act_window">
+        <field name="name">Stores</field>
+        <field name="res_model">delivery.store</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Store/Branch!
+            </p>
+            <p>
+                Configure stores and their deliverable pincodes to control e-commerce and backend shipping validation.
+            </p>
+        </field>
+    </record>
+
+    <!-- Deliverable Pincode Views -->
+    <record id="view_delivery_store_pincode_list" model="ir.ui.view">
+        <field name="name">delivery.store.pincode.list</field>
+        <field name="model">delivery.store.pincode</field>
+        <field name="arch" type="xml">
+            <list string="Deliverable Pincodes" editable="bottom">
+                <field name="store_id" options="{'no_create': True}"/>
+                <field name="pincode" placeholder="e.g. 600002"/>
+                <field name="state_id"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_delivery_store_pincode_search" model="ir.ui.view">
+        <field name="name">delivery.store.pincode.search</field>
+        <field name="model">delivery.store.pincode</field>
+        <field name="arch" type="xml">
+            <search string="Search Deliverable Pincodes">
+                <field name="pincode"/>
+                <field name="state_id"/>
+                <field name="store_id"/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Store" name="group_by_store" context="{'group_by': 'store_id'}"/>
+                    <filter string="State" name="group_by_state" context="{'group_by': 'state_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action for Deliverable Pincodes -->
+    <record id="action_delivery_store_pincode" model="ir.actions.act_window">
+        <field name="name">Deliverable Pincodes</field>
+        <field name="res_model">delivery.store.pincode</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_delivery_store_pincode_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add deliverable pincodes!
+            </p>
+            <p>
+                Configure the pincodes where your stores can deliver physical products.
+            </p>
+        </field>
+    </record>
+
+    <!-- Configuration Menu Structure -->
+    <menuitem id="menu_delivery_store_root"
+              name="Delivery Configuration"
+              parent="website_sale.menu_ecommerce_settings"
+              sequence="100"/>
+
+    <menuitem id="menu_delivery_store"
+              name="Stores"
+              parent="menu_delivery_store_root"
+              action="action_delivery_store"
+              sequence="10"/>
+
+    <menuitem id="menu_delivery_store_pincode"
+              name="Deliverable Pincodes"
+              parent="menu_delivery_store_root"
+              action="action_delivery_store_pincode"
+              sequence="20"/>
+</odoo>
+

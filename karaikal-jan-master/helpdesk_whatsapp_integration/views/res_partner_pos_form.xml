@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Minimal POS Partner Form View for Quick Create -->
+    <record id="view_partner_pos_quick_create" model="ir.ui.view">
+        <field name="name">res.partner.pos.quick.create</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form string="Quick Create Customer">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="1" />
+                            <field name="mobile" required="1" widget="phone" />
+                            <field name="anniversary"/>
+                        </group>
+                        <group>
+                            <field name="dob" required="1"/>
+                            <field name="gender"/>
+                            <field name="has_membership" widget="boolean_toggle"
+                               label="Activate Membership (25 Bonus Points)"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Quick Create - uses minimal form view -->
+    <record id="res_partner_action_quick_create_pos" model="ir.actions.act_window">
+        <field name="name">Quick Create Customer</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_partner_pos_quick_create"/>
+        <field name="context">{'default_customer_rank': 1, 'form_view_initial_mode': 'edit'}</field>
+    </record>
+</odoo>

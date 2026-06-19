@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_stock_move_line_inventory_tree_inherit" model="ir.ui.view">
+        <field name="name">stock.move.line.tree.view.inventory.inherit</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='quantity']" position="before">
+                <field name="previous_on_hand_qty" optional="show"/>
+                <field name="inventory_quntaity" optional="show"/>
+             </xpath>
+        </field>
+    </record>
+</odoo>

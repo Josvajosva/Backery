@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+    <t t-name="oi_karaikal_receipt.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+		<xpath expr="//t[@t-foreach='taxTotals.subtotals']/div[@class='d-flex']/span[@class='fw-bolder text-nowrap mw-100']" position="replace">
+            <span class="fw-bolder text-nowrap mw-100">Taxable amount</span>
+        </xpath>
+		<xpath expr="//OrderWidget" position="before">
+		    <t t-set="company" t-value="props.data.company or {}"/>
+            <div style="margin-top: 10px; font-size: 14px; text-align: left; word-wrap: break-word; word-break: break-word; width: 100%;">
+		    <div style="display: flex; align-items: baseline; flex-wrap: wrap;">
+		        <span style="min-width: 70px;  font-weight:bold; ">Bill No</span>
+                <span style="font-size: 13.5px; width: calc(100% - 70px); text-indent: -12px; padding-left: 12px;">
+		            <span style="margin-right: 12px;">:</span>
+                    <t t-esc="props.data.displayName"/>
+		        </span>
+		    </div>
+                <div style="display: flex; align-items: baseline; flex-wrap: wrap;">
+		        <span style="min-width: 70px; font-weight:bold;">Date</span>
+                    <span style="font-size: 13.5px; width: calc(100% - 70px); text-indent: -12px; padding-left: 12px;">
+		            <span style="margin-right: 12px;">:</span>
+                        <t t-esc="props.data.date.split(' ')[0]"/>
+		        </span>
+		    </div>
+                <div style="display: flex; align-items: baseline; flex-wrap: wrap;">
+		        <span style="min-width: 70px; font-weight:bold;">Time</span>
+                    <span style="font-size: 13.5px; width: calc(100% - 70px); text-indent: -12px; padding-left: 12px;">
+		            <span style="margin-right: 12px;">:</span>
+                        <t t-esc="props.data.date.split(' ')[1]"/>
+		        </span>
+		    </div>
+                <div style="display: flex; align-items: baseline; flex-wrap: wrap;">
+		        <span style="min-width: 70px; font-weight:bold;">Employee</span>
+                    <span style="font-size: 13.5px; width: calc(100% - 70px); text-indent: -12px; padding-left: 12px;">
+		            <span style="margin-right: 12px;">:</span>
+                        <t t-esc="props.data.cashier"/>
+		        </span>
+		    </div>
+                <div style="display: flex; align-items: baseline; flex-wrap: wrap;">
+		     <t t-if="props.data.partner_name">
+		        <span style="min-width: 70px; font-weight:bold;">Buyer</span>
+                 <span style="font-size: 14px; width: calc(100% - 70px); text-indent: -17px; padding-left: 17px;">
+		            <span style="margin-right: 12px;">:</span>
+                     <t t-esc="props.data.partner_name"/>
+		        </span>
+		        </t>
+		    </div>
+                <div style="display: flex; align-items: baseline; flex-wrap: wrap; " id="address_pos">
+	     <t t-if="props.data.partner_street || props.data.partner_city || props.data.partner_state ">
+	        <span style="min-width: 70px; font-weight:bold;">Address</span>
+             <span style="width: calc(100% - 70px); text-indent: -17px; padding-left: 17px;">
+		            <span style="margin-right: 12px;">:</span>
+                 <t t-esc="props.data.partner_street"/>
+                 <br/>
+                 <t t-esc="props.data.partner_city"/>
+                 <br/>
+                 <t t-esc="props.data.partner_state"/>
+		        </span>
+		       </t>
+		    </div>
+
+                <!-- GSTIN/UIN -->
+                <!-- <div style="display: flex; align-items: baseline; flex-wrap: wrap;"> -->
+                <!-- <span style="min-width: 70px; font-weight:bold; font-size:13px;">GSTIN/UIN</span> -->
+                <!-- <span style="font-size: 13.5px; text-indent: -12px; padding-left: 12px;"> -->
+                <!-- <span style="margin-right: 12px;">:</span> -->
+                <!-- <t t-esc="props.data.company_vat" /> -->
+                <!-- </span> -->
+                <!-- </div> -->
+                <!-- SHOP -->
+                <!-- <div style="display: flex; align-items: baseline; flex-wrap: wrap; margin-bottom: 20px;"> -->
+                <!-- <span style="min-width: 70px; font-weight:bold;">Shop</span> -->
+                <!-- <span style="width: calc(100% - 70px); text-indent: -16px; padding-left: 17px;"> -->
+                <!-- <span style="margin-right: 12px;">:</span> -->
+                <!-- <t t-esc="props.data.shop" /> -->
+                <!-- </span> -->
+                <!-- </div> -->
+
+		</div>
+
+
+</xpath>
+
+
+        <xpath expr="//div[hasclass('before-footer')]" position="replace">
+			<div class="pos-receipt-order-data">
+				<t t-if="props.data.has_membership and props.data.available_points">
+					<div style="font-weight:700; font-size:14px;text-align:center; margin-bottom:5px;">
+						Available loyalty points: <t t-esc="props.data.available_points"/>
+					</div>
+				</t>
+				<div style="font-weight:700; font-size:14px;text-align:center;">
+					Thank You... Please Visit Again ...
+				</div>
+			</div>
+		</xpath>
+        <xpath expr="//div[hasclass('paymentlines')]" position="replace">
+		      </xpath>
+        <xpath expr="//div[contains(@class, 'pos-receipt-order-data') and contains(., 'Powered by Odoo')]"
+               position="replace">
+		        </xpath>
+
+        <xpath expr="//OrderWidget" position="replace">
+			    <div style="display:flex; font-weight:bold; border-bottom:1px solid #000; margin-bottom:5px; padding-bottom:3px;">
+			        <div style="width:15%; text-align:center;">S.no</div>
+                    <div style="width:33%; text-align:left;">Product</div>
+                    <div style="width:13%; text-align:center;">Qty</div>
+                    <div style="width:20%; text-align:right;">Rate</div>
+                    <div style="width:22%; text-align:right;">Amount</div>
+			    </div>
+            <t t-set="counter" t-value="0"/>
+            <t t-set="total_qty" t-value="0"/>
+            <t t-foreach="props.data.orderlines" t-as="line" t-key="line_index">
+			        <t t-set="counter" t-value="counter + 1"/>
+                <t t-set="total_qty" t-value="line.qty + total_qty"/>
+                <div style="display:flex; margin-bottom:2px;">
+			            <div style="width:15%; text-align:center;">
+			                <t t-esc="counter"/>
+			            </div>
+                    <div style="width:33%; text-align:left;">
+			                <t t-esc="line.productName"/>
+			            </div>
+                    <div style="width:13%; text-align:center;">
+			                <t t-esc="line.qty"/>
+			            </div>
+                    <div style="width:20%; text-align:right;">
+			                <t t-esc="line.unitPrice"/>
+			            </div>
+                    <div style="width:22%; text-align:right;">
+			                <t t-esc="line.price ? line.price.toFixed(2) : '0.00'"/>
+			            </div>
+			        </div>
+			    </t>
+
+            <div style="margin-left: 5px;">
+					<div class="d-flex fw-bold border-top pt-2">
+						<div class="col-6"> 
+							<span style="font-weight:bold; font-size:14px;">Total Qty</span>
+						</div>
+                        <div class="col-4 text-right">
+							<span><t t-esc="props.data.sum"/></span> 
+						</div>
+					</div>
+
+                <div class="d-flex fw-bold">
+						<div class="col-6"> 
+							<span style="font-weight:bold; font-size:14px;">Total items:</span>
+						</div>
+                    <div class="col-4 text-right">
+							<span style="font-size:14px"><t t-esc="props.data.ItemCount"/></span> 
+						</div>
+					</div>
+
+                <div class="d-flex fw-bold">
+						<div class="col-6"> 
+							<span style="font-weight:bold; font-size:14px;">Items:</span>
+						</div>
+                    <div class="col-4 text-right">
+							<span style="font-size:14px"><t t-esc="props.data.ItemCount"/></span> 
+						</div>
+					</div>
+				</div>
+
+
+
+			</xpath>
+    </t>
+</templates>

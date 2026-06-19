@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Publish the landing page so it is accessible to public users by default -->
+        <record id="landing_page_website_page" model="website.page">
+            <field name="view_id" ref="landing_page_template"/>
+            <field name="url">/landing</field>
+            <field name="is_published" eval="True"/>
+            <field name="website_indexed" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

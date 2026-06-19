@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="style_paperformat_delivery" model="report.paperformat">
+        <field name="name">Account Invoice</field>
+        <field name="default" eval="True"/>
+        <field name="format">A7</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">5</field>
+        <field name="dpi">0</field>
+    </record>
+    <report
+        id="acc_inv_id"
+        model="account.move"
+        string="Account Invoice" 
+        report_type="qweb-pdf"
+        name="oi_karaikal_sales_report.account_inv_action"
+        file="oi_karaikal_sales_report.account_inv_action"/>
+
+    <record id="sale_order_report_template" model="ir.actions.report">
+        <field name="name">Account Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">oi_karaikal_sales_report.account_inv_action</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+    </record>
+</odoo>

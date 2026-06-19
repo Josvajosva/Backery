@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    Menu for advanced sale report  -->
+
+    <menuitem id="sale_report_indent_menu"
+              parent="sale.menu_sale_report"
+              name="Sales Indent"
+              action="sale_indent_report"
+              sequence="48"/>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_line_tree_inherit_cost_sales" model="ir.ui.view">
+        <field name="name">stock.move.line.tree.inherit.cost.sales</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="quantity" position="after">
+                <field name="computed_cost" optional="show" sum="Total"/>
+                <field name="new_cost" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_move_line_pivot_inherit_cost_sales" model="ir.ui.view">
+        <field name="name">stock.move.line.pivot.inherit.cost.sales</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_pivot"/>
+        <field name="arch" type="xml">
+            <xpath expr="//pivot" position="inside">
+                <field name="computed_cost" type="measure"/>
+                <field name="new_cost" type="measure"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

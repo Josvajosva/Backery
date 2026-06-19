@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ReceiptHeader" t-inherit="point_of_sale.ReceiptHeader" t-inherit-mode="extension">
+    <xpath expr="//img[hasclass('pos-receipt-logo')]" position="replace">
+    
+    </xpath>
+    
+      <xpath expr="//div[hasclass('pos-receipt-center-align')]" position="replace">
+            <div class="pos-receipt-center-align">
+                <br />
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('pos-receipt-contact')]" position="replace">
+            <div class="pos-receipt-contact mt-0">
+                <div style="font-size: 14px; font-weight: bold; margin-bottom:5px;">
+                    <t t-if="props.data.company.name">
+                        <t t-esc="props.data.company.name"/>
+                    </t>
+                    <t t-else="">
+                        
+                    </t>
+                </div>
+ 
+                <div style="font-size:15px;">
+                    <t t-if="props.data.company.street">
+                        <t t-esc="props.data.company.street"/>
+                    </t>
+                    <t t-else="">
+                        
+                    </t>
+                </div>
+ 
+                <div style="text-align:center; font-size:15px;">
+                    <t t-if="props.data.company.city">
+                        <t t-esc="props.data.company.city"/>
+                    </t>
+                    <t t-else="">
+                    </t>
+                </div>
+ 
+                <div style="font-size:15px;">
+                    <t t-if="props.data.company.vat">
+                        GSTIN : <t t-esc="props.data.company.vat" />
+                    </t>
+                    <t t-else="">
+                        GSTIN : 
+                    </t>
+                </div>
+ 
+                <div style="font-size:14px;">
+                    <t t-if="props.data.company.state_id and props.data.company.state_id.name">
+                        State Name : <t t-esc="props.data.company.state_id.name"/>,
+                    </t>
+                   <t t-else="">
+                        State Name : 
+                    </t>
+                    <span style="margin-left:4px;">
+					    <t t-if="props.data.company.state_tin_code">
+					        Code: <t t-esc="props.data.company.state_tin_code"/>
+					    </t>
+					    <t t-else="">
+					        Code: 
+					    </t>
+					</span>
+					<div>
+					<span style="margin-left:4px;">
+					    <t t-if="props.data.company.phone">
+					        Contact No: <t t-esc="props.data.company.phone"/>
+					    </t>
+					    <t t-else="">
+					        Contact No: 
+					    </t>
+					</span>
+					</div>
+					
+                </div>
+ 
+                <div style="font-size:14px;">
+                    <t t-if="props.data.company.email">
+                        E-mail : <t t-esc="props.data.company.email"/>
+                    </t>
+                    <t t-else="">
+                        E-mail : 
+                    </t>
+                </div>
+ 
+
+                <div style="text-align:center; font-size:15px; margin-top:5px;">
+                    Tax Invoice<br/>
+                    <t t-if="!props.data.company.hide_franchise_span">
+                        <span style="color: #333333; margin-top: 5px; display: inline-block;">
+                            A Franchise Outlet of Karaikal Iyangars
+                        </span>
+                    </t>
+                </div>
+
+
+            </div>
+        </xpath>
+    </t>
+</templates>
+ 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="total_quantity_pos.OrderWidget"
+       t-inherit="point_of_sale.OrderWidget" t-inherit-mode="extension"
+       owl="1">
+        <xpath expr="//div[hasclass('order-summary')]" position="inside">
+                <div class="line">
+                    <div class="subentry fs-6 text-muted">
+                        Item Count:
+                        <span class="value">
+                            <t t-esc="ItemCount"/>
+                        </span>
+                    </div>
+                    <div class="subentry fs-6 text-muted">
+                        Total Quantity:
+                        <span class="value">
+                            <t t-esc="TotalQuantity"/>
+                        </span>
+                    </div>
+                </div>
+        </xpath>
+    </t>
+</templates>

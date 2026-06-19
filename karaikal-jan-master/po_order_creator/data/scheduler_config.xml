@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="create_po_order"  model="po.scheduler.config">
+            <field name="name">Create Purchase Order</field>
+            <field name="type">create</field>
+            <field name="cron_id" ref="po_order_creator.ir_cron_create_purchase_orders" />
+        </record>
+
+        <record id="update_po_order"  model="po.scheduler.config">
+            <field name="name">Update Purchase Order</field>
+            <field name="type">update</field>
+            <field name="cron_id" ref="po_order_creator.ir_cron_update_purchase_orders" />
+        </record>
+    </data>
+</odoo>

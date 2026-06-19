@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- Variant form: inherit only product_normal_form_view (not the shared
+         product.template common root) so we do not widen the same inheritance
+         issue as template-level UI extensions. -->
+    <record id="po_order_creator_product_product_normal_inherited" model="ir.ui.view">
+        <field name="name">product.product.normal.form.inherit.po.order</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="priority" eval="50"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header/button[@name='action_open_label_layout']" position="after">
+                <button name="update_cost_price" type="object" string="Update Cost Price"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

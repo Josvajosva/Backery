@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sequence_config_list" model="ir.ui.view">
+        <field name="name">sequence.config.list</field>
+        <field name="model">sequence.config</field>
+        <field name="arch" type="xml">
+            <list string="Sequence Configuration" editable="bottom">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="short_code"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_sequence_config" model="ir.actions.act_window">
+        <field name="name">Sequence Configuration</field>
+        <field name="res_model">sequence.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first sequence configuration!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sequence_config_root"
+              name="Sequence Config"
+              parent="base.menu_administration"
+              sequence="100"/>
+
+    <menuitem id="menu_sequence_config"
+              name="Sequence Configuration"
+              parent="menu_sequence_config_root"
+              action="action_sequence_config"
+              sequence="10"/>
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_lot_dymo_label" model="report.paperformat">
+            <field name="name">Ingredient Labels</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">60</field>
+            <field name="page_width">32</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="disable_shrinking" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">96</field>
+        </record>
+
+        <record id="action_report_dymo_lot_label" model="ir.actions.report">
+            <field name="name">Ingredients &amp; Nutrition</field>
+            <field name="model">stock.lot</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">oi_karaiakal_label_ingredients.ingredients_label_main_template</field>
+            <field name="report_file">oi_karaiakal_label_ingredients.ingredients_label_main_template</field>
+            <field name="paperformat_id" ref="oi_karaiakal_label_ingredients.paperformat_lot_dymo_label"/>
+            <field name="print_report_name">'Lot-Serial - %s' % object.name</field>
+            <field name="binding_model_id" ref="stock.model_stock_lot"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

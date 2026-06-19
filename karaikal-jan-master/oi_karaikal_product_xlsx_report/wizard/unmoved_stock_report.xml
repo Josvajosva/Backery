@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="unmoved_stock_report_wizard_form" model="ir.ui.view">
+        <field name="name">unmoved.stock.report.form</field>
+        <field name="model">unmoved.stock.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="from_date" />
+                        <field name="include_zero_stock" />
+                        <field name="company_ids" widget="many2many_tags" invisible="1" />
+                        <field name="xls_file" readonly="1" filename="xls_filename" />
+                    </group>
+                    <group>
+                        <field name="to_date" />
+                        <field name="xls_filename" readonly="1" invisible="1" />
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_print_xlsx" string="Print" type="object" class="btn-primary" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="unmoved_stock_report_action" model="ir.actions.act_window">
+        <field name="name">Unmoved Stock Report</field>
+        <field name="res_model">unmoved.stock.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_unmoved_stock_report" name="Unmoved Stock Report" parent="stock.menu_warehouse_report" action="unmoved_stock_report_action" sequence="310" />
+
+</odoo>

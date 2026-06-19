@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    Template for sale indent report -->
+    <template id="sales_indent_view">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t class="page">
+                    <div class="oe_structure"/>
+                     <center>
+                    <h3><b>Ready-Made Celebration Cakes Report</b></h3>
+                    <!-- <span>Date &amp; Time: <t t-esc="datetime.now().strftime('%d-%b-%y %H:%M')"/></span> -->
+                </center>
+
+                   <table class="table table-condensed table-striped" style="border-collapse: collapse; width: 100%;">
+                <thead>
+                    <tr style="border: 1px solid black;">
+                        <th style="border: 1px solid black; padding: 5px; text-align: center;">Sl. No</th>
+                        <th style="border: 1px solid black; padding: 5px; text-align: center;">Product Name</th>
+                        <th style="border: 1px solid black; padding: 5px; text-align: center;">Main Shop</th>
+                        <th style="border: 1px solid black; padding: 5px; text-align: center;">New Bus Stand Shop</th>
+                        <th style="border: 1px solid black; padding: 5px; text-align: center;">New Shop</th>
+                        <th style="border: 1px solid black; padding: 5px; text-align: center;">SBI Shop</th>
+                        <th style="border: 1px solid black; padding: 5px; text-align: center;">Keezhakasakudy</th>
+                        <th style="border: 1px solid black; padding: 5px; text-align: center;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">1</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">Cakes</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">10</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">5</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">8</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">12</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">6</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">41</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">2</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">Pastries</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">7</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">4</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">6</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">9</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">3</td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: center;">29</td>
+                    </tr>
+                                                       
+                </tbody>
+            </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

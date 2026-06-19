@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+oi_karaikal_product_xlsx_report.access_product_delivery_status,product_delivery_status,oi_karaikal_product_xlsx_report.model_product_delivery_status,base.group_user,1,1,1,1
+oi_karaikal_product_xlsx_report.access_sale_customer_category,sale_customer_category,oi_karaikal_product_xlsx_report.model_sale_customer_category,base.group_user,1,1,1,1
+access_daily_product_production_report,access_daily_roduct_production_report,model_daily_product_production_report,base.group_user,1,1,1,1
+access_product_variance_report,product.variance.report,model_product_variance_report,base.group_user,1,1,1,1
+access_inventory_valuation_report,inventory.valuation.report,model_inventory_valuation_report,base.group_user,1,1,1,1
+access_unmoved_stock_report,unmoved.stock.report,model_unmoved_stock_report,base.group_user,1,1,1,1
+access_combined_stock_report,combined.stock.report,model_combined_stock_report,base.group_user,1,1,1,1

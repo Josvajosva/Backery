@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Backend: Add Pickup Schedule tab on the Sale Order form -->
+    <record id="j_sale_order_pickup_form_view" model="ir.ui.view">
+        <field name="name">j.sale.order.pickup.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Pickup Schedule" name="j_pickup_schedule">
+                    <group>
+                        <group string="Store">
+                            <field name="delivery_option" readonly="1"/>
+                            <field name="pickup_store_id" readonly="1"/>
+                        </group>
+                        <group string="Schedule">
+                            <field name="pickup_type" readonly="1"/>
+                            <field name="scheduled_pickup_datetime" readonly="1"
+                                   invisible="pickup_type != 'scheduled'"/>
+                        </group>
+                        <group string="Staff">
+                            <field name="ready_time"
+                                   help="Set the estimated time this order will be ready for pickup. Visible to the customer in My Orders."/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Portal: Add Scheduled Pickup + Ready Time columns to /my/orders list -->
+    <template id="j_portal_my_orders_pickup_cols" inherit_id="sale.portal_my_orders">
+        <!-- Header columns -->
+        <xpath expr="//th[normalize-space()='Total']" position="after">
+            <th class="text-end d-none d-md-table-cell">Scheduled</th>
+            <th class="text-end d-none d-md-table-cell">Pickup Slot</th>
+        </xpath>
+        <!-- Data columns — one per order row -->
+        <xpath expr="//td[span[@t-field='order.amount_total']]" position="after">
+            <td class="text-end d-none d-md-table-cell">
+                <t t-if="order.delivery_option == 'store_pickup'">
+                    <t t-if="order.pickup_type == 'scheduled' and order.scheduled_pickup_datetime">
+                        <span t-field="order.scheduled_pickup_datetime"
+                              t-options="{'widget': 'datetime'}"/>
+                    </t>
+                    <t t-else="">
+                        <span class="text-muted">ASAP</span>
+                    </t>
+                </t>
+                <t t-else="">
+                    <span class="text-muted">—</span>
+                </t>
+            </td>
+            <td class="text-end d-none d-md-table-cell">
+                <t t-if="order.ready_time">
+                    <span t-field="order.ready_time"
+                          t-options="{'widget': 'datetime'}"/>
+                </t>
+                <t t-else="">
+                    <span class="text-muted">—</span>
+                </t>
+            </td>
+        </xpath>
+    </template>
+
+    <!-- Confirmation page: show store, pickup type, and ready time card -->
+    <template id="j_confirmation_pickup_info" inherit_id="website_sale.confirmation">
+        <xpath expr="//div[@id='oe_structure_website_sale_confirmation_2']" position="before">
+            <t t-if="order and order.delivery_option == 'store_pickup'">
+                <div class="card border-success mt-3 mb-3">
+                    <div class="card-header bg-success text-white fw-bold">
+                        In-Store Pickup Details
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-1">
+                            <strong>Store:</strong>
+                            <span t-esc="order.pickup_store_id.name"/>
+                        </p>
+                        <p class="mb-1">
+                            <strong>Pickup Type:</strong>
+                            <span t-if="order.pickup_type == 'scheduled'">Scheduled —
+                                <span t-field="order.scheduled_pickup_datetime"
+                                      t-options="{'widget': 'datetime'}"/>
+                            </span>
+                            <span t-else="">As Soon As Possible</span>
+                        </p>
+                        <p class="mb-0">
+                            <strong>Estimated Ready Time:</strong>
+                            <t t-if="order.ready_time">
+                                <span t-field="order.ready_time"
+                                      t-options="{'widget': 'datetime'}"/>
+                            </t>
+                            <t t-else="">
+                                <span class="text-muted">Being calculated…</span>
+                            </t>
+                        </p>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

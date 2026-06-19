@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Intercompany SO invoices: QR encodes sale_order_id|invoice_id next to address -->
+    <template id="report_invoice_document_intercompany_qr" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[hasclass('row')]/t[1]" position="before">
+            <t t-if="o.is_intercompany_so_invoice">
+                <t t-set="qr_code" t-value="o.get_intercompany_so_qr_code()"/>
+                <div t-if="qr_code" class="col-auto ms-auto" style="text-align: right; position: absolute; top: 30px; right: 30px;">
+                    <img t-att-src="qr_code"
+                         alt="QR"
+                         style="width: 120px; height: 120px; display: block;"/>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

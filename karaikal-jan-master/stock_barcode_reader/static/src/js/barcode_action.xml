@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="stock_barcode_reader.BarcodeAction">
+        <div class="o_action o_barcode_reader d-flex flex-column"
+             style="height: 100%; background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f0 100%);">
+
+            <!-- ============ HEADER ============ -->
+            <div style="background: linear-gradient(135deg, #714B67 0%, #4a2f44 100%); padding: 16px 24px;"
+                 class="d-flex align-items-center shadow">
+                <div class="d-flex align-items-center justify-content-center rounded-circle me-3"
+                     style="width: 48px; height: 48px; background: rgba(255,255,255,0.15);">
+                    <i class="fa fa-barcode fa-lg text-white"/>
+                </div>
+                <div>
+                    <h4 class="mb-0 text-white fw-bold">Barcode Inventory</h4>
+                    <small style="color: rgba(255,255,255,0.7);">Scan products to count physical inventory</small>
+                </div>
+                <div class="ms-auto d-flex align-items-center" t-if="state.lines.length">
+                    <span class="badge rounded-pill fs-6"
+                          style="background: rgba(255,255,255,0.2); color: #fff; padding: 8px 16px;">
+                        <i class="fa fa-cube me-1"/>
+                        <t t-esc="state.lines.length"/> item(s)
+                    </span>
+                </div>
+            </div>
+
+            <!-- ============ CONTROLS CARD ============ -->
+            <div class="mx-4 mt-3 p-3 bg-white rounded-3 shadow-sm border"
+                 style="animation: slideDown 0.3s ease;">
+                <div class="row g-3 align-items-end">
+
+                    <!-- Location (auto-selected) -->
+                    <div class="col-lg-6 col-md-6">
+                        <label class="form-label fw-semibold text-muted small text-uppercase mb-1">
+                            <i class="fa fa-map-marker me-1 text-primary"/>Warehouse Location
+                        </label>
+                        <div class="form-control form-control-lg bg-light fw-semibold"
+                             t-esc="state.locationName || 'Loading...'"/>
+                    </div>
+
+                    <!-- Barcode or product name search (suggestions below like Odoo) -->
+                    <div class="col-lg-6 col-md-6 position-relative">
+                        <label class="form-label fw-semibold text-muted small text-uppercase mb-1">
+                            <i class="fa fa-barcode me-1 text-primary"/>Scan Barcode or Search Product
+                        </label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text"
+                                  style="background: #714B67; border-color: #714B67; color: #fff;">
+                                <i class="fa fa-barcode"/>
+                            </span>
+                            <input type="text" class="form-control"
+                                   t-att-value="state.barcodeValue"
+                                   t-on-input="onBarcodeInput"
+                                   t-on-keydown="onBarcodeKeydown"
+                                   t-ref="barcodeInput"
+                                   placeholder="Scan barcode or type product name..."/>
+                        </div>
+                        <t t-if="state.productSuggestions.length &gt; 0">
+                            <div class="list-group position-absolute w-100 mt-1 shadow-sm border rounded"
+                                 style="z-index: 1050; max-height: 280px; overflow: auto;">
+                                <div t-foreach="state.productSuggestions"
+                                     t-as="suggestion"
+                                     t-key="suggestion.id"
+                                     role="button"
+                                     class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-2"
+                                     t-on-click="() => this.onSuggestionClick(suggestion)">
+                                    <span>
+                                        <span class="fw-semibold" t-esc="suggestion.display_name"/>
+                                        <t t-if="suggestion.default_code">
+                                            <small class="text-muted ms-1">[<t t-esc="suggestion.default_code"/>]</small>
+                                        </t>
+                                    </span>
+                                    <small class="text-muted" t-esc="suggestion.barcode"/>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ============ PRODUCT LINES ============ -->
+            <div class="flex-grow-1 overflow-auto mx-4 mt-3 mb-3">
+                <t t-if="state.lines.length">
+                    <div class="bg-white rounded-3 shadow-sm border overflow-hidden">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr style="background: #f8f5f7;">
+                                    <th class="text-center text-muted" style="width: 50px;">#</th>
+                                    <th style="width: 56px;">Image</th>
+                                    <th>Product</th>
+                                    <th>UOM</th>
+                                    <th class="text-center" style="width: 150px;">Counted</th>
+                                    <th class="text-center" style="width: 60px;"/>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="state.lines" t-as="line" t-key="line.key">
+                                    <tr class="o_barcode_line"
+                                        style="animation: slideInRow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);">
+                                        <td class="text-center text-muted small">
+                                            <t t-esc="line_index + 1"/>
+                                        </td>
+                                        <td>
+                                            <img class="rounded border shadow-sm"
+                                                 t-att-src="'/web/image/product.product/' + line.product_id + '/image_128'"
+                                                 width="42" height="42" alt=""
+                                                 style="object-fit: cover;"/>
+                                        </td>
+                                        <td>
+                                            <span class="fw-semibold" t-esc="line.name"/>
+                                        </td>
+                                        <td class="text-muted" t-esc="line.uom"/>
+                                        <td class="text-center">
+                                            <input type="number"
+                                                   class="form-control form-control-sm text-center fw-bold border-primary"
+                                                   t-att-value="line.quantity"
+                                                   min="0.01" step="1"
+                                                   style="max-width: 110px; margin: auto;"
+                                                   t-on-keydown="onQuantityKeydown"
+                                                   t-on-focus="onQuantityFocus"
+                                                   t-on-blur="(ev) => this.onQuantityBlur(line.product_id, ev)"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-outline-danger rounded-circle"
+                                                    style="width: 32px; height: 32px; padding: 0; line-height: 32px;"
+                                                    title="Remove"
+                                                    t-on-click="() => this.removeLine(line.product_id)">
+                                                <i class="fa fa-times"/>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+
+                <!-- Empty state -->
+                <t t-else="">
+                    <div class="d-flex flex-column align-items-center justify-content-center h-100"
+                         style="animation: fadeIn 0.5s ease;">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center mb-4"
+                             style="width: 120px; height: 120px; background: rgba(113,75,103,0.08);">
+                            <i class="fa fa-barcode" style="font-size: 3.5rem; color: #714B67; opacity: 0.4;"/>
+                        </div>
+                        <h4 class="fw-normal text-muted">No Products Scanned</h4>
+                        <p class="text-muted mb-0">Scan a barcode or search for products to begin counting.</p>
+                    </div>
+                </t>
+            </div>
+
+            <!-- ============ FOOTER / APPLY BAR ============ -->
+            <t t-if="state.lines.length">
+                <div class="d-flex justify-content-between align-items-center px-4 py-3 bg-white border-top shadow-sm"
+                     style="animation: slideUp 0.3s ease;">
+                    <div class="d-flex align-items-center">
+                        <span class="fw-bold text-dark fs-5">
+                            Total:
+                            <span class="badge rounded-pill fs-6 ms-2"
+                                  style="background: #714B67; padding: 8px 18px;">
+                                <t t-esc="state.lines.length"/> product(s)
+                            </span>
+                        </span>
+                    </div>
+                    <button class="btn btn-lg px-5 fw-semibold text-white shadow"
+                            style="background: #714B67; border-color: #714B67; transition: all 0.2s;"
+                            t-on-click="onApply"
+                            t-att-disabled="state.isApplying or state.isEditingQuantity">
+                        <t t-if="state.isApplying">
+                            <i class="fa fa-spinner fa-spin me-2"/>Applying...
+                        </t>
+                        <t t-else="">
+                            <i class="fa fa-check-circle me-2"/>Apply Inventory
+                        </t>
+                    </button>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

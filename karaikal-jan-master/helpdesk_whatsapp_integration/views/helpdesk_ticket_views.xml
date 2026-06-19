@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_hwi_ticket_form" model="ir.ui.view">
+        <field name="name">view_hwi_ticket_form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']"
+                   position="inside">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_wa_send_msg" string="WhatsApp Reply"
+                            type="object"
+                            class="oe_stat_button" icon="fa-reply"/>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='team_id']" position="before">
+                <field name="type_id"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_mobile"/>
+            </xpath>
+            <xpath expr="//field[@name='email_cc']" position="after">
+                <field name="employee_created"/>
+                <field name="equipment_id" invisible="whatsapp_option != 'Equipment / Maintenance'"/>
+                <field name="equipment_name" invisible="whatsapp_option != 'Equipment / Maintenance'"/>
+                <field name="affected_areas" invisible="whatsapp_option != 'Staff/Manpower Shortage'"/>
+                <field name="quality_issue_type" invisible="whatsapp_option != 'Quality or Process Issue'"/>
+                <field name="quality_issue_product" invisible="whatsapp_option != 'Quality or Process Issue'"/>
+                <field name="system_name" invisible="whatsapp_option != 'Technical / IT Issue'"/>
+                <field name="employee_details" invisible="whatsapp_option != 'Workplace Grievance'"/>
+                <field name="grievance_category" invisible="whatsapp_option != 'Workplace Grievance'"/>
+                <field name="ticket_response" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="product_enquiry" invisible="whatsapp_option != 'Order Enquiry'"/>
+                <field name="required_qty" invisible="whatsapp_option != 'Order Enquiry'"/>
+                <field name="expected_delivery" invisible="whatsapp_option != 'Order Enquiry'"/>
+                <field name="complaint_regarding" invisible="whatsapp_option != 'Complaint / Support'"/>
+                <field name="critical_level" invisible="whatsapp_option not in ('Equipment / Maintenance','Technical / IT Issue','Internal Ticket')"/>
+                <field name="material_category" invisible="whatsapp_option != 'Material Shortage'"/>
+                <field name="shortage_material" invisible="whatsapp_option != 'Material Shortage'"/>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="store_location"/>
+                <field name="store_identifier"/>
+                <field name="department_id" invisible="employee_created != True"/>
+            </xpath>
+            <xpath expr="//page[@name='extra_info']/group//field[@name='company_id']" position="after">
+                <field name="image_url" invisible="whatsapp_option not in ('Cake Model Images','Complaint / Support')" widget="image_url" style="max-width:150px; max-height:150px;"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_hwi_ticket_tree" model="ir.ui.view">
+        <field name="name">view_hwi_ticket_tree</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_mobile"/>
+                <field name="employee_created"/>
+                <field name="store_location"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

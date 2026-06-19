@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="po_order_creator.ScanInputDialog">
+        <Dialog title="'Scan Invoice'" size="'md'" contentClass="'po_scan_dialog_content'" bodyClass="'p-2'">
+            <div class="mb-2">
+                <input t-ref="input"
+                       type="text"
+                       class="form-control"
+                       t-att-disabled="state.busy"
+                       placeholder="Scan QR code here..."
+                       t-on-keydown="onKeydown"
+                       t-model="state.value"/>
+            </div>
+            <div t-if="state.busy" class="d-flex align-items-center gap-2 text-primary mb-0">
+                <span class="spinner-border spinner-border-sm" role="status"/>
+                <span>Processing receipt, please wait...</span>
+            </div>
+            <t t-set-slot="footer">
+                <button type="button" class="btn btn-primary" t-on-click="onConfirm" t-att-disabled="state.busy || !state.value">Confirm</button>
+                <button type="button" class="btn btn-secondary" t-on-click="props.close">Cancel</button>
+            </t>
+        </Dialog>
+    </t>
+</templates>
