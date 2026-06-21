@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Orders: always show only confirmed website orders, even if filter is removed -->
+    <record id="website_sale.action_orders_ecommerce" model="ir.actions.act_window">
+        <field name="domain">[('website_id', '!=', False), ('state', 'in', ['sale', 'done'])]</field>
+    </record>
+
+    <!-- Unpaid Orders: all unconfirmed website orders (draft + sent) -->
+    <record id="website_sale.action_view_unpaid_quotation_tree" model="ir.actions.act_window">
+        <field name="domain">[('website_id', '!=', False), ('state', 'in', ['draft', 'sent'])]</field>
+    </record>
+
+    <!-- Add delivery_option column to sale order list view (used by both Orders and Unpaid Orders) -->
+    <record id="view_sale_order_list_delivery_option" model="ir.ui.view">
+        <field name="name">sale.order.list.delivery.option</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="delivery_option" optional="show" widget="badge"
+                    decoration-info="delivery_option == 'pan_india'"
+                    decoration-success="delivery_option == 'store_pickup'"
+                    decoration-warning="delivery_option == 'local_delivery'"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Add Group By delivery_option to Orders search view -->
+    <record id="view_ecommerce_search_delivery_option" model="ir.ui.view">
+        <field name="name">sale.order.ecommerce.search.delivery.option</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="website_sale.view_sales_order_filter_ecommerce"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <filter string="Delivery Option" name="group_by_delivery_option" context="{'group_by': 'delivery_option'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add Group By delivery_option to Unpaid Orders search view -->
+    <record id="view_ecommerce_unpaid_search_delivery_option" model="ir.ui.view">
+        <field name="name">sale.order.ecommerce.unpaid.search.delivery.option</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="website_sale.view_sales_order_filter_ecommerce_unpaid"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <group>
+                    <filter string="Delivery Option" name="group_by_delivery_option" context="{'group_by': 'delivery_option'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

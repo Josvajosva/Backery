@@ -33,6 +33,7 @@ Key Features:
         'views/homepage_template.xml',
         'views/checkout_store_pickup_views.xml',
         'views/j_sale_order_pickup_views.xml',
+        'views/sale_order_website_views.xml',
     ],
     'assets': {
         'web.assets_frontend': [
