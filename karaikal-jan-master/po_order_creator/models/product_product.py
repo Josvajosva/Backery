@@ -1,5 +1,5 @@
 from odoo import api, models
-
+from odoo.tools.safe_eval import safe_eval
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
@@ -165,3 +165,35 @@ class ProductProduct(models.Model):
             tmpl._sync_branch_vendor_price_from_factory(parent_company, self.env.company)
 
         return True
+
+    def update_old_cost_price(self):
+        companies = self.env['res.company'].search([('parent_id', '=', False)])
+
+        po_lines = self.env['purchase.order.line'].sudo().search([
+            ('state', 'in', ['purchase', 'done']),
+            ('company_id', 'in', companies.ids),
+        ], order='id desc')
+
+        latest_prices = {}
+
+        for line in po_lines:
+            key = (line.company_id.id, line.product_id.id)
+            if key not in latest_prices:
+                latest_prices[key] = line.price_unit
+
+        products = self.env['product.product'].search([])
+
+        for product in products:
+            for company in companies:
+                price = latest_prices.get((company.id, product.id))
+                if price:
+                    product.with_company(company).standard_price = price
+
+    def action_view_po(self):
+        action = super().action_view_po()
+        context = action.get('context', {})
+        if isinstance(context, str):
+            context = safe_eval(context)
+        context.pop('search_default_purchase_state', None)
+        action['context'] = context
+        return action
