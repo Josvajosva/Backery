@@ -34,32 +34,8 @@
                         <label class="form-label fw-semibold text-muted small text-uppercase mb-1">
                             <i class="fa fa-map-marker me-1 text-primary"/>Warehouse Location
                         </label>
-                        <t t-if="state.locations.length === 1">
-                            <input class="form-control form-control-lg"
-                                   type="text"
-                                   t-att-value="state.locationName"
-                                   readonly="readonly"/>
-                        </t>
-
-                        <t t-else="">
-                            <select class="form-select form-select-lg"
-                                    t-on-change="onLocationChange">
-
-                                <t t-foreach="state.locations"
-                                   t-as="loc"
-                                   t-key="loc.id">
-
-                                    <option t-att-value="loc.id"
-                                            t-att-selected="loc.id === state.selectedLocationId">
-
-                                        <t t-esc="loc.name"/>
-
-                                    </option>
-
-                                </t>
-
-                            </select>
-                        </t>
+                        <div class="form-control form-control-lg bg-light fw-semibold"
+                             t-esc="state.locationName || 'Loading...'"/>
                     </div>
 
                     <!-- Barcode or product name search (suggestions below like Odoo) -->

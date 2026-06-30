@@ -16,7 +16,6 @@ class BarcodeInventoryAction extends Component {
         this.state = useState({
             selectedLocationId: false,
             locationName: "",
-            locations: [],          // NEW
             lines: [],
             barcodeValue: "",
             productSuggestions: [],
@@ -35,31 +34,14 @@ class BarcodeInventoryAction extends Component {
     // -------------------------------------------------------------------------
 
     async _loadLocations() {
-        const locations = await this.orm.call(
+        const loc = await this.orm.call(
             "stock.quant",
             "get_barcode_locations",
             [],
         );
-
-        this.state.locations = locations || [];
-
-        if (this.state.locations.length) {
-            this.state.selectedLocationId = this.state.locations[0].id;
-            this.state.locationName = this.state.locations[0].name;
-        }
-    }
-
-    onLocationChange(ev) {
-        const locationId = parseInt(ev.target.value);
-
-        this.state.selectedLocationId = locationId;
-
-        const location = this.state.locations.find(
-            (l) => l.id === locationId
-        );
-
-        if (location) {
-            this.state.locationName = location.name;
+        if (loc && loc.id) {
+            this.state.selectedLocationId = loc.id;
+            this.state.locationName = loc.name;
         }
     }
 

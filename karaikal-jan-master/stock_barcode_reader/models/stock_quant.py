@@ -15,30 +15,15 @@ class StockQuant(models.Model):
 
     @api.model
     def get_barcode_locations(self):
-        """Return all stock take locations."""
-        locations = self.env["stock.location"].search([
-            ("usage", "=", "internal"),
-            ("company_id", "=", self.env.company.id),
-            ("barcode_stock_take_location", "=", True),
-        ], order="complete_name")
-        if locations:
-            vals = []
-            if self.env.company.parent_id:
-                vals.append({
-                    'id': locations[0].id,
-                    "name": locations[0].complete_name,
-
-                })
-            else:
-                vals = [
-                    {
-                        "id": loc.id,
-                        "name": loc.complete_name,
-                    }
-                    for loc in locations
-                ]
-            return vals
-        return [{}]
+        """Return internal locations for the current user's company."""
+        location = self.env['stock.location'].search([
+            ('usage', '=', 'internal'),
+            ('company_id', '=', self.env.company.id),
+            ('barcode_stock_take_location', '=', True),
+        ], limit=1)
+        if location:
+            return {'id': location.id, 'name': location.complete_name}
+        return {}
 
     @api.model
     def barcode_apply_inventory(self, location_id, lines):
